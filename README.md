@@ -1,69 +1,58 @@
-# React + TypeScript + Vite
+# 🗳️ Upvotia — Your Voice, Their Code
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Upvotia** is a collaborative platform that empowers users to submit, vote on, and support feature requests ("wishes") for any software product. At the same time, developers can explore these ideas, identify real-world needs, and choose to build them in return for recognition or visibility.
 
-Currently, two official plugins are available:
+>— Your Voice, Their Code.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🌟 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- ✅ Submit feature requests for any tool, app, or platform
+- 👍 Vote on other users' suggestions
+- 💬 Discuss and refine ideas through comments
+- 🧑‍💻 Developers can browse popular ideas and pick what to build
+- 💸 (Optional) Support features financially through pledges
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🧩 Target Users
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| 👤 User Type | 💡 Value Proposition |
+|-------------|-----------------------|
+| **End Users** | Suggest new features, vote, and financially support useful ideas |
+| **Developers** | Discover real problems to solve, gain visibility, and build a public portfolio |
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🗺️ Pages (MVP)
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- `/` - Home Page
+- `/wishes` - Browse Feature Requests
+- `/wish/:id` - Wish Details Page
+- `/submit` - Submit a New Wish
+- `/dashboard` - Developer Dashboard
+- `/profile/:id` - User Profile
+- `/auth` - Login / Register
+
+---
+
+## 💻 Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| Frontend Framework | **React** |
+| Language | **TypeScript** |
+| Styling | **Tailwind CSS** |
+| Routing | React Router |
+| Hosting | Netlify |
+
+---
+
+## 🚀 Getting Started
+
+```bash
+git clone https://github.com/malak-sabry-104/upvotia.git
+cd upvotia
+npm install
+npm run dev
