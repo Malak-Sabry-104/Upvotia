@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clean Gradient Demo</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #000;
+    }
+
+    .gradient-blur-top-left {
+      filter: blur(35px);
+      background: radial-gradient(100% 90% at 0% 0%,
+          #228a5d 0%,
+          rgb(10, 10, 10) 100%);
+      height: 36%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 552px;
+      overflow: hidden;
+    }
+
+    .gradient-blur-horizontal {
+      filter: blur(35px);
+      background: linear-gradient(270deg,
+          #228a5d 0%,
+          rgb(17, 54, 38) 21.85%,
+          rgb(34, 138, 93) 60%,
+          rgb(10, 10, 10) 100%);
+      mask: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0) 100%);
+      height: 90%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      overflow: hidden;
+    }
+
+    .gradient-radial-bottom-center {
+      filter: blur(0px);
+      background: radial-gradient(100% 157% at 50% 91.4%,
+          rgb(10, 10, 10) 0%,
+          rgba(10, 10, 10, 0) 100%);
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .section-gradient-bottom-left {
+      background: radial-gradient(35% 60% at 0% 100%,
+          #113626 0%,
+          rgb(10, 10, 10) 100%);
+    }
+
+    .section-gradient-top-left {
+      background: radial-gradient(35% 50% at 0% 0%,
+          #113626 0%,
+          rgb(10, 10, 10) 100%);
+    }
+
+    .section-gradient-center {
+      background: radial-gradient(35% 36% at 50% 53.6%,
+          #113626 0%,
+          rgb(10, 10, 10) 100%);
+    }
+
+    .section-gradient-bottom-right {
+      background: radial-gradient(35% 93% at 100% 100%,
+          #113626 0%,
+          rgb(10, 10, 10) 100%);
+    }
+
+    .section-gradient-top-right {
+      background: radial-gradient(35% 50% at 100% 0%,
+          #113626 0%,
+          rgb(10, 10, 10) 100%);
+    }
+
+    .framer-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 10px;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) rotate(-180deg);
+      z-index: 1;
+      bottom: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .framer-blur-top-left {
+      background: radial-gradient(100% 90% at 0% 0%,
+          rgb(34, 138, 93) 0%,
+          rgb(10, 10, 10) 100%);
+      filter: blur(35px);
+      height: 65%;
+      width: 552px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+    }
+
+    .framer-blur-horizontal {
+      background: linear-gradient(270deg,
+          rgb(34, 138, 93) 0%,
+          rgb(17, 54, 38) 21.85%,
+          rgb(34, 138, 93) 60%,
+          rgb(10, 10, 10) 100%);
+      filter: blur(35px);
+      mask: linear-gradient(rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
+      height: 90%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      overflow: hidden;
+    }
+
+    .framer-radial-bottom {
+      background: radial-gradient(100% 157% at 50% 91.4%,
+          rgb(10, 10, 10) 0%,
+          rgba(10, 10, 10, 0) 100%);
+      filter: blur(0px);
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+    }
+
+    .pattern-wrapper {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .pattern-inner {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .pattern-bg-bottom-layer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <section style="height: 100vh; width: 100%">
+    <div class="gradient-blur-top-left"></div>
+    <div class="gradient-blur-horizontal"></div>
+    <div class="gradient-radial-bottom-center"></div>
+
+    <div class="pattern-wrapper" style="transform: rotate(-360deg); opacity:10%">
+      <div class="pattern-inner" style="transform: rotate(180deg)">
+        <div style="
+              position: absolute;
+              border-radius: inherit;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              background-image: url(https://framerusercontent.com/images/5AXsK3MyGYovv57LsfY0T3kRQU.png);
+              background-repeat: repeat;
+              background-position: center;
+              border: 0;
+              background-size: 40.5px auto;
+            " data-framer-background-image-wrapper="true"></div>
+      </div>
+      <div class="pattern-bg-bottom-layer"></div>
+    </div>
+
+  </section>
+
+
+  <section style="height: 100vh; width: 100%" class="section-gradient-top-left"></section>
+  <section style="height: 100vh; width: 100%" class="section-gradient-center"></section>
+  <section style="height: 100vh; width: 100%" class="section-gradient-bottom-right"></section>
+  <section style="height: 100vh; width: 100%" class="section-gradient-top-right"></section>
+
+  <section style="height: 100vh; width: 100%; position: relative">
+    <div class="framer-container">
+      <div class="framer-blur-top-left"></div>
+      <div class="framer-blur-horizontal"></div>
+      <div class="framer-radial-bottom"></div>
+    </div>
+  </section>
+</body>
+
+</html>

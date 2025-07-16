@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WishVault - Where Dreams Come True</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6d28d9',
+                        secondary: '#f472b6',
+                        dark: '#1e293b',
+                        darker: '#0f172a'
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-reverse': 'float-reverse 5s ease-in-out infinite',
+                        'pulse-slow': 'pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'float-reverse': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        
+        .wish-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .wish-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(45deg, #6d28d9, #f472b6);
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Navigation -->
+    <nav class="bg-darker/80 backdrop-blur-md border-b border-gray-800 fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-magic text-secondary text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-white">Wish<span class="gradient-text">Vault</span></span>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="#" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Browse Wishes</a>
+                        <a href="#" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="relative z-10 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    <span class="gradient-text">Share Your Dreams</span><br>
+                    <span class="text-white">Make Them Come True</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-10">
+                    WishVault connects dreamers with those who can help. Whether it's a personal goal, community project, or wild fantasy, share it with the world!
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <button class="bg-gradient-to-r from-primary to-secondary text-white font-bold py-3 px-8 rounded-full hover:opacity-90 transition-all transform hover:scale-105 shadow-lg">
+                        <i class="fas fa-plus mr-2"></i> Submit a Wish
+                    </button>
+                    <button class="bg-gray-800 text-white font-bold py-3 px-8 rounded-full hover:bg-gray-700 transition-all transform hover:scale-105 shadow-lg border border-gray-700">
+                        <i class="fas fa-search mr-2"></i> Browse Wishes
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Floating elements -->
+            <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
+                <div class="absolute top-1/4 left-1/4 w-16 h-16 rounded-full bg-primary/20 blur-xl animate-float"></div>
+                <div class="absolute top-1/3 right-1/4 w-24 h-24 rounded-full bg-secondary/20 blur-xl animate-float-reverse"></div>
+                <div class="absolute bottom-1/4 right-1/3 w-20 h-20 rounded-full bg-purple-400/20 blur-xl animate-float"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Wishes Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-darker">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">✨ Trending Wishes ✨</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Discover the most popular wishes people are sharing right now</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Wish Card 1 -->
+                <div class="wish-card bg-gray-800 rounded-xl p-6 relative overflow-hidden group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary opacity-20 blur-lg group-hover:opacity-30 transition duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center mr-3">
+                                <i class="fas fa-user text-gray-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Sarah J.</h4>
+                                <p class="text-xs text-gray-400">3 days ago</p>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Learn to play the piano</h3>
+                        <p class="text-gray-300 mb-4">I've always wanted to play beautiful music. Looking for someone who can teach me the basics or recommend good online resources.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-2">
+                                <span class="bg-primary/20 text-primary text-xs px-2 py-1 rounded">Music</span>
+                                <span class="bg-secondary/20 text-secondary text-xs px-2 py-1 rounded">Learning</span>
+                            </div>
+                            <div class="flex items-center text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 text-white">124</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Wish Card 2 -->
+                <div class="wish-card bg-gray-800 rounded-xl p-6 relative overflow-hidden group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-purple-500 to-pink-500 opacity-20 blur-lg group-hover:opacity-30 transition duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center mr-3">
+                                <i class="fas fa-user text-gray-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Michael T.</h4>
+                                <p class="text-xs text-gray-4 00">1 week ago</p>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Community garden project</h3>
+                        <p class="text-gray-300 mb-4">Want to transform an empty lot in our neighborhood into a community garden. Need volunteers, materials, and gardening expertise.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-2">
+                                <span class="bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded">Community</span>
+                                <span class="bg-blue-500/20 text-blue-400 text-xs px-2 py-1 rounded">Eco</span>
+                            </div>
+                            <div class="flex items-center text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 text-white">89</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Wish Card 3 -->
+                <div class="wish-card bg-gray-800 rounded-xl p-6 relative overflow-hidden group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-teal-500 opacity-20 blur-lg group-hover:opacity-30 transition duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center mr-3">
+                                <i class="fas fa-user text-gray-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Alex K.</h4>
+                                <p class="text-xs text-gray-400">2 days ago</p>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Travel to Japan</h3>
+                        <p class="text-gray-300 mb-4">Dreaming of experiencing Japanese culture. Looking for travel tips, must-visit places, and maybe even a travel buddy!</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-2">
+                                <span class="bg-red-500/20 text-red-400 text-xs px-2 py-1 rounded">Travel</span>
+                                <span class="bg-yellow-500/20 text-yellow-400 text-xs px-2 py-1 rounded">Culture</span>
+                            </div>
+                            <div class="flex items-center text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 text-white">156</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="border border-gray-700 text-white font-medium py-2 px-6 rounded-full hover:bg-gray-800/50 transition-all">
+                    View All Trending Wishes <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-dark">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">How WishVault Works</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Turning dreams into reality in just three simple steps</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="text-center p-6 rounded-xl bg-gray-800/50 hover:bg-gray-800 transition-all">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-primary/20 flex items-center justify-center text-3xl text-primary">
+                        <div class="w-16 h-16 rounded-full bg-primary/30 flex items-center justify-center">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">1. Share Your Wish</h3>
+                    <p class="text-gray-400">Describe your dream, goal, or aspiration. Be as detailed or as simple as you'd like.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="text-center p-6 rounded-xl bg-gray-800/50 hover:bg-gray-800 transition-all">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-secondary/20 flex items-center justify-center text-3xl text-secondary">
+                        <div class="w-16 h-16 rounded-full bg-secondary/30 flex items-center justify-center">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">2. Connect With Others</h3>
+                    <p class="text-gray-400">Our community sees your wish and can offer help, advice, or resources to make it happen.</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="text-center p-6 rounded-xl bg-gray-800/50 hover:bg-gray-800 transition-all">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-purple-500/20 flex items-center justify-center text-3xl text-purple-400">
+                        <div class="w-16 h-16 rounded-full bg-purple-500/30 flex items-center justify-center">
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">3. Make It Happen</h3>
+                    <p class="text-gray-400">With support from the community, watch your wish transform from dream to reality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-darker to-primary/10">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Share Your Wish?</h2>
+            <p class="text-xl text-gray-300 mb-10">Join thousands of dreamers who are making their wishes come true with the help of our community.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button class="bg-gradient-to-r from-primary to-secondary text-white font-bold py-4 px-10 rounded-full hover:opacity-90 transition-all transform hover:scale-105 shadow-lg">
+                    <i class="fas fa-plus mr-2"></i> Submit Your Wish Now
+                </button>
+                <button class="bg-gray-800 text-white font-bold py-4 px-10 rounded-full hover:bg-gray-700 transition-all transform hover:scale-105 shadow-lg border border-gray-700">
+                    <i class="fas fa-play mr-2"></i> Watch Demo
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-darker border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-magic text-secondary text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-white">Wish<span class="gradient-text">Vault</span></span>
+                    </div>
+                    <p class="text-gray-400 mb-6">Where dreams find their wings and wishes become reality through the power of community.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Browse Wishes</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Submit a Wish</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Success Stories</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2023 WishVault. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-gray-300 text-sm transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-300 text-sm transition-colors">Terms of Service</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-300 text-sm transition-colors">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating action button -->
+    <div class="fixed bottom-8 right-8 z-50">
+        <button class="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center shadow-xl hover:shadow-2xl transition-all transform hover:scale-110">
+            <i class="fas fa-plus text-xl"></i>
+        </button>
+    </div>
+
+    <!-- Starry background effect -->
+    <div id="stars-container" class="fixed inset-0 pointer-events-none overflow-hidden z-0"></div>
+
+    <script>
+        // Create stars for background
+        function createStars() {
+            const container = document.getElementById('stars-container');
+            const starCount = 100;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random properties
+                const size = Math.random() * 3;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const duration = 2 + Math.random() * 3;
+                const delay = Math.random() * 5;
+                
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${posX}%`;
+                star.style.top = `${posY}%`;
+                star.style.setProperty('--duration', `${duration}s`);
+                star.style.animationDelay = `${delay}s`;
+                
+                container.appendChild(star);
+            }
+        }
+        
+        // Mobile menu toggle
+        function setupMobileMenu() {
+            const mobileMenuButton = document.querySelector('.md\\:hidden button');
+            // Would add mobile menu functionality here
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            setupMobileMenu();
+            
+            // Add animation to wish cards on scroll
+            const observerOptions = {
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.wish-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

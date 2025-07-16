@@ -1,0 +1,30 @@
+import React from "react";
+import EmblaCarousel from "./Carousel";
+import type { EmblaOptionsType } from "embla-carousel";
+import "../embla.css";
+import WishesGrid from "./WishesGrid";
+const OPTIONS: EmblaOptionsType = { axis: "y" };
+const SLIDE_COUNT = 5;
+const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
+
+const TrendingWishes: React.FC = () => (
+  <>
+    <section
+      style={{ height: "110vh", width: "100%" }}
+      className="section-gradient-top-left"
+    >
+
+      <h1
+        className="capitalize text-4xl pt-7 pb-2 text-center font-semibold"
+        style={{ fontFamily: "'Bebas Neue', cursive" }}
+      >
+        Trending Wishes
+      </h1>
+      <WishesGrid/>
+
+      <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+    </section>
+  </>
+);
+
+export default TrendingWishes;

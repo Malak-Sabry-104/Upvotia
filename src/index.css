@@ -1,1 +1,221 @@
 @import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-black overflow-x-hidden text-white;
+  }
+
+  nav {
+    z-index: 50;
+  }
+  
+}
+
+.gradient-blur-top-left {
+  filter: blur(35px);
+  background: radial-gradient(
+    100% 90% at 0% 0%,
+    #228a5d 0%,
+    rgb(10, 10, 10) 100%
+  );
+  height: 36%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 552px;
+  overflow: hidden;
+}
+
+.gradient-blur-horizontal {
+  filter: blur(35px);
+  background: linear-gradient(
+    270deg,
+    #228a5d 0%,
+    rgb(17, 54, 38) 21.85%,
+    rgb(34, 138, 93) 60%,
+    rgb(10, 10, 10) 100%
+  );
+  mask: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0) 100%);
+  height: 90%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+.gradient-radial-bottom-center {
+  filter: blur(0px);
+  background: radial-gradient(
+    100% 157% at 50% 91.4%,
+    rgb(10, 10, 10) 0%,
+    rgba(10, 10, 10, 0) 100%
+  );
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.section-gradient-bottom-left {
+  background: radial-gradient(
+    35% 60% at 0% 100%,
+    #113626 0%,
+    rgb(10, 10, 10) 100%
+  );
+}
+
+.section-gradient-top-left {
+  background: radial-gradient(
+    35% 50% at 0% 0%,
+    #113626 0%,
+    rgb(10, 10, 10) 100%
+  );
+}
+
+.section-gradient-center {
+  background: radial-gradient(
+    35% 36% at 50% 53.6%,
+    #113626 0%,
+    rgb(10, 10, 10) 100%
+  );
+}
+
+.section-gradient-bottom-right {
+  background: radial-gradient(
+    35% 93% at 100% 100%,
+    #113626 0%,
+    rgb(10, 10, 10) 100%
+  );
+}
+
+.section-gradient-top-right {
+  background: radial-gradient(
+    35% 50% at 100% 0%,
+    #113626 0%,
+    rgb(10, 10, 10) 100%
+  );
+}
+
+.framer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) rotate(-180deg);
+  z-index: 1;
+  bottom: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.framer-blur-top-left {
+  background: radial-gradient(
+    100% 90% at 0% 0%,
+    rgb(34, 138, 93) 0%,
+    rgb(10, 10, 10) 100%
+  );
+  filter: blur(35px);
+  height: 65%;
+  width: 552px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.framer-blur-horizontal {
+  background: linear-gradient(
+    270deg,
+    rgb(34, 138, 93) 0%,
+    rgb(17, 54, 38) 21.85%,
+    rgb(34, 138, 93) 60%,
+    rgb(10, 10, 10) 100%
+  );
+  filter: blur(35px);
+  mask: linear-gradient(rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
+  height: 90%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+.framer-radial-bottom {
+  background: radial-gradient(
+    100% 157% at 50% 91.4%,
+    rgb(10, 10, 10) 0%,
+    rgba(10, 10, 10, 0) 100%
+  );
+  filter: blur(0px);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.pattern-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.pattern-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.pattern-bg-bottom-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.bg-greeny-custom {
+  background-color: hsla(155, 100%, 75%, 25%);
+}
+
+.bg-main-green {
+  background-color: hsla(155, 100%, 65%, 1%);
+}
+
+.greeny-inset-shadowing {
+  box-shadow: 0px -3px 15px 0px hsla(155, 100%, 75%, 25%) inset;
+}
+.blacky-bg {
+  background: linear-gradient(
+    59deg,
+    rgba(18, 55, 39, 0.2),
+    rgba(18, 55, 39, 0.6)
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 0 0.5px rgba(255, 255, 255, 0.3),
+    0 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+}
+.greeny-bg {
+  background: linear-gradient(
+    59deg,
+    rgba(18, 55, 39, 0.2),
+    rgba(18, 55, 39, 0.6)
+  );
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+
