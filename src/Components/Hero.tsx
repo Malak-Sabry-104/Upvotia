@@ -43,20 +43,36 @@ const Hero = () => {
         {/* Left side */}
         <div className="left w-[50%] py-5">
           <div className="relative z-10 flex flex-col items-start py-3">
-            <h1 className=" md:text-7xl font-semibold w-[90%] text-start mx-3 text-white mb-10">
-              Share Your Dreams, Make Them Come True
+            <h1 className="capitaize md:text-7xl font-semibold w-[90%] text-start mx-3 text-white mb-2">
+              Your Voice
             </h1>
-            <p className="text-gray-300 text-lg md:text-sm mb-8 px-2 w-[70%] text-start">
+            <h1 className="capitaize md:text-7xl font-semibold w-[90%] text-start mx-3 text-white mb-10">
+              Their Code..
+            </h1>
+            <p className="text-gray-300 text-lg md:text-sm mb-5 px-2 w-[70%] text-start">
               Upvotia connects dreamers with those who can help. Whether it's a
               personal goal, community project, or wild fantasy, share it with
-              the world!
+              the world
+            </p>
+            <p
+              className="text-gray-300 text-lg md:text-sm mb-6 px-2 w-[70%] text-start
+            italic"
+            >
+              {" "}
+            -  Share your ideas, support your favorites, and watch them come
+              true.
             </p>
 
             <div className="btns-group flex justify-center gap-4">
               {/* Get Started */}
               <div className="relative">
-                <button className="bg-[#144D35]/50 backdrop-blur-2xl z-10 relative text-white px-6 py-3 rounded-lg font-semibold transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#144D35]/30 transform">
-                  Get Started
+                <button
+                  className="bg-[#144D35]/50 backdrop-blur-2xl 
+                z-10 relative text-white  py-3 rounded-lg font-semibold 
+                transition duration-300 hover:-translate-y-1 hover:shadow-lg 
+                hover:shadow-[#144D35]/30 transform px-6"
+                >
+                  Explore
                 </button>
                 <span className="w-[100px] h-[60px] bg-greeny-custom absolute rounded-full blur-lg left-1/2 -translate-x-1/2 z-0 -bottom-1/2"></span>
               </div>
@@ -64,10 +80,10 @@ const Hero = () => {
               {/* Browse Wishes */}
               <div className="relative z-10">
                 <button
-                  className="relative z-20 bg-main-green greeny-inset-shadowing ring-1 ring-white text-white px-6 py-3 rounded-lg font-semibold 
-    transition duration-300 ease-in-out hover:bg-white  hover:shadow-lg hover:shadow-white/30 transform hover:-translate-y-1 hover:scale-100"
+                  className="relative z-20 bg-main-green greeny-inset-shadowing ring-1 ring-white text-white  py-3 rounded-lg font-semibold 
+    transition duration-300 ease-in-out hover:bg-white  hover:shadow-lg hover:shadow-white/30 transform hover:-translate-y-1 hover:scale-100 px-9"
                 >
-                  Explore Wishes
+                  Ignite It
                 </button>
 
                 {/* Blur glow effect behind button */}

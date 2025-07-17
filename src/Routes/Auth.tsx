@@ -1,4 +1,4 @@
-import React, { useState, type ReactNode } from "react";
+import React, { useEffect, useState, type ReactNode } from "react";
 import {
   FaUser,
   FaLock,
@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 
 /* ---------- types ---------- */
 interface SubmitButtonProps {
@@ -18,7 +19,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon: ReactNode;
   placeholder: string;
   type?: string;
-  error?: string; //  ← نحتفظ به نص فقط
+  error?: string;
 }
 
 /* ---------- main component ---------- */
@@ -39,13 +40,22 @@ export default function AuthCard() {
     formState: { errors: regErrors },
   } = useForm();
 
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === "#register") {
+      setIsRegister(true);
+    } else if (location.hash === "#login") {
+      setIsRegister(false);
+    }
+  }, [location]);
+
   return (
     <section
       id="auth"
       style={{ height: "100vh", width: "100%", position: "relative" }}
       className="flex justify-center items-center pb-8"
     >
-      {/* Blurs (كما هي) */}
       <div className="framer-container">
         <div className="framer-blur-top-left"></div>
         <div className="framer-blur-horizontal"></div>
@@ -82,6 +92,7 @@ export default function AuthCard() {
           >
             <h2 className="text-3xl text-white/60 mb-6">Login</h2>
             <form
+              id="login"
               onSubmit={handleLoginSubmit((data) => console.log("Login", data))}
               className="flex flex-col gap-4"
             >
@@ -113,6 +124,7 @@ export default function AuthCard() {
 
           {/* ───── Register ───── */}
           <div
+            id="register"
             className={`absolute flex flex-col justify-center top-0 left-0 w-full h-full px-10 py-6 transition-all duration-700 ease-in-out ${
               isRegister
                 ? "translate-x-0 opacity-100"

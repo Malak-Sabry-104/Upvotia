@@ -4,6 +4,7 @@ import { ArrowRight, Mail, Phone, MapPin, SendHorizontal } from "lucide-react";
 const ContactSection: React.FC = () => {
   return (
     <section
+    id="contact"
       style={{ height: "100vh", width: "100%" }}
       className=" section-gradient-top-right min-h-screen  text-white px-6 py-12 md:px-20 flex flex-col md:flex-row gap-10 "
     >
