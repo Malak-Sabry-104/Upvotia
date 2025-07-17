@@ -103,15 +103,17 @@ export default function BoostPage() {
   const idea = placeholderIdeas.find((item) => item.id === Number(id));
   const [votes, setVotes] = useState(idea?.votes || 0);
 
-  console.log("🚀 Route ID:", id);
-  console.log("✅ Idea Found:", idea);
+  console.log(" Route ID:", id);
+  console.log(" Idea Found:", idea);
 
   if (!idea) {
     return <div className="text-white p-8">Idea not found.</div>;
   }
 
   return (
-    <div className="p-10 text-white max-w-4xl mx-auto pt-[5rem]">
+    <div 
+    style={{height: "120vh", width: "100%"}}
+    className=" section-gradient-bottom-right p-10 text-white  px-[8rem] pt-[6rem]">
       <h1 className="text-3xl font-bold mb-2">{idea.title}</h1>
       <p className="text-sm text-gray-400 mb-4">
         Tool: {idea.tool} • Date: {idea.date}
