@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Asks | Feature Requests Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .idea-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-input:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+    }
+
+    .tag:hover {
+      background-color: #e5e7eb;
+    }
+
+    .status-badge {
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      z-index: 50;
+      min-width: 160px;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 font-sans">
+  <!-- Header Section -->
+  <header class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl">Explore Asks</h1>
+        <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
+          From small fixes to big upgrades — all in one global feed.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Search + Filter Bar -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+    <div class="bg-white rounded-lg shadow p-4 mb-6">
+      <div class="flex flex-col md:flex-row md:items-center md:space-x-4 space-y-4 md:space-y-0">
+        <!-- Search Input -->
+        <div class="flex-1 relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <i class="fas fa-search text-gray-400"></i>
+          </div>
+          <input type="text" id="search"
+            class="search-input block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            placeholder="Type a tool or feature..." oninput="filterIdeas()">
+        </div>
+
+        <!-- Dropdown Filters -->
+        <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+          <!-- Tool Filter -->
+          <div class="dropdown relative">
+            <button
+              class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+              <span id="tool-filter-label">All Tools</span>
+              <i class="fas fa-chevron-down ml-2 text-gray-400"></i>
+            </button>
+            <div class="dropdown-content mt-1 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+              <div class="py-1 max-h-60 overflow-auto" role="menu" aria-orientation="vertical">
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  role="menuitem" onclick="updateFilter('tool', 'All Tools', 'tool-filter-label')">All Tools</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  role="menuitem" onclick="updateFilter('tool', 'Notion', 'tool-filter-label')">Notion</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  role="menuitem" onclick="updateFilter('tool', 'Slack', 'tool-filter-label')">Slack</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  role="menuitem" onclick="updateFilter('tool', 'Trello', 'tool-filter-label')">Trello</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  role="menuitem" onclick="updateFilter('tool', 'Figma', 'tool-filter-label')">Figma</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  role="menuitem" onclick="updateFilter('tool', 'GitHub', 'tool-filter-label')">GitHub</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category Filter -->
+          <div class="dropdown relative">
+            <button
+              class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+              <span id="category-filter-label">All Categories</span>
+              <i class="fas fa-chevron-down ml-2 text-gray-400"></i>
+            </button>
+            <div class="dropdown-content mt-1 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+              <div class="py-1 max-h-60 overflow-auto" role="menu" aria-orientation="vertical">
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  role="menuitem" onclick="updateFilter('category', 'All Categories', 'category-filter-label')">All
+                  Categories</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  role="menuitem" onclick="updateFilter('category', 'UI', 'category-filter-label')">UI</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  role="menuitem"
+                  onclick="updateFilter('category', 'Performance', 'category-filter-label')">Performance</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  role="menuitem"
+                  onclick="updateFilter('category', 'Integration', 'category-filter-label')">Integration</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  role="menuitem" onclick="updateFilter('category', 'Bug Fix', 'category-filter-label')">Bug Fix</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  role="menuitem" onclick="updateFilter('category', 'Feature', 'category-filter-label')">Feature</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sort By -->
+          <div class="dropdown relative">
+            <button
+              class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+              <span id="sort-filter-label">Top Boosted</span>
+              <i class="fas fa-chevron-down ml-2 text-gray-400"></i>
+            </button>
+            <div class="dropdown-content mt-1 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+              <div class="py-1" role="menu" aria-orientation="vertical">
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  role="menuitem"
+                  onclick="updateFilter('sort', 'Top Boosted', 'sort-filter-label'); sortIdeas('votes')">Top Boosted</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  role="menuitem"
+                  onclick="updateFilter('sort', 'Newest', 'sort-filter-label'); sortIdeas('newest')">Newest</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  role="menuitem"
+                  onclick="updateFilter('sort', 'Most Funded', 'sort-filter-label'); sortIdeas('funded')">Most
+                  Funded</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Idea Card Grid -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+    <div id="idea-grid" class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <!-- Idea cards will be dynamically inserted here -->
+    </div>
+    <div id="no-results" class="hidden text-center py-12">
+      <i class="fas fa-search fa-3x text-gray-300 mb-4"></i>
+      <h3 class="text-lg font-medium text-gray-900">No ideas found</h3>
+      <p class="mt-1 text-sm text-gray-500">Try adjusting your search or filter to find what you're looking for.</p>
+    </div>
+  </div>
+
+  <script>
+    // Sample data for idea cards
+    const ideas = [
+      {
+        id: 1,
+        title: "Dark Mode for Mobile App",
+        tool: "Notion",
+        description: "Currently only the desktop version has dark mode. Would love to have it on mobile too for late-night note taking.",
+        tags: ["UI", "Mobile", "Accessibility"],
+        status: "Open",
+        votes: 245,
+        funded: 1200,
+        date: "2023-05-15"
+      },
+      {
+        id: 2,
+        title: "Keyboard Shortcuts for Common Actions",
+        tool: "Slack",
+        description: "Add more keyboard shortcuts to speed up workflow, especially for message formatting and navigation.",
+        tags: ["UX", "Productivity"],
+        status: "In Dev",
+        votes: 189,
+        funded: 850,
+        date: "2023-06-02"
+      },
+      {
+        id: 3,
+        title: "GitHub Integration with Trello",
+        tool: "Trello",
+        description: "Better sync between Trello cards and GitHub issues/pull requests with two-way updates.",
+        tags: ["Integration", "Dev Tools"],
+        status: "Open",
+        votes: 134,
+        funded: 325,
+        date: "2023-06-10"
+      },
+      {
+        id: 4,
+        title: "Performance Optimization for Large Documents",
+        tool: "Notion",
+        description: "Notion becomes very slow with documents containing hundreds of blocks. Needs optimization.",
+        tags: ["Performance", "Bug Fix"],
+        status: "Open",
+        votes: 98,
+        funded: 420,
+        date: "2023-06-18"
+      },
+      {
+        id: 5,
+        title: "Custom Status Emoji in Slack",
+        tool: "Slack",
+        description: "Allow users to set custom emoji as their status, not just the predefined ones.",
+        tags: ["UI", "Feature"],
+        status: "Shipped",
+        votes: 312,
+        funded: 1500,
+        date: "2023-04-22"
+      },
+      {
+        id: 6,
+        title: "Offline Mode for Figma",
+        tool: "Figma",
+        description: "Ability to view and make basic edits to files when offline, with sync when reconnected.",
+        tags: ["Feature", "Mobile"],
+        status: "In Dev",
+        votes: 276,
+        funded: 2100,
+        date: "2023-05-30"
+      }
+    ];
+
+    // Current filters
+    let currentFilters = {
+      tool: "All Tools",
+      category: "All Categories",
+      sort: "Top Boosted"
+    };
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function () {
+      renderIdeas(ideas);
+    });
+
+    // Render idea cards
+    function renderIdeas(ideasToRender) {
+      const ideaGrid = document.getElementById('idea-grid');
+      ideaGrid.innerHTML = '';
+
+      if (ideasToRender.length === 0) {
+        document.getElementById('no-results').classList.remove('hidden');
+        return;
+      } else {
+        document.getElementById('no-results').classList.add('hidden');
+      }
+
+      ideasToRender.forEach(idea => {
+        const statusColors = {
+          "Open": "bg-blue-100 text-blue-800",
+          "In Dev": "bg-yellow-100 text-yellow-800",
+          "Shipped": "bg-green-100 text-green-800"
+        };
+
+        const card = document.createElement('div');
+        card.className = 'idea-card bg-white rounded-lg shadow overflow-hidden transition-all duration-200 hover:cursor-pointer';
+        card.onclick = () => window.location.href = `/idea/${idea.id}`;
+
+        card.innerHTML = `
+                    <div class="p-5">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                    ${idea.tool}
+                                </span>
+                            </div>
+                            <span class="status-badge inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColors[idea.status]}">
+                                ${idea.status}
+                            </span>
+                        </div>
+                        <div class="mt-4">
+                            <h3 class="text-lg font-medium text-gray-900 line-clamp-2">${idea.title}</h3>
+                            <p class="mt-2 text-sm text-gray-500 line-clamp-3">${idea.description}</p>
+                        </div>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            ${idea.tags.map(tag => `
+                                <span class="tag inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-gray-50 text-gray-600 hover:bg-gray-100">
+                                    ${tag}
+                                </span>
+                            `).join('')}
+                        </div>
+                        <div class="mt-6 flex items-center justify-between">
+                            <div class="flex items-center">
+                                <button class="inline-flex items-center px-3 py-1 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                    <i class="fas fa-arrow-up mr-1"></i>
+                                    ${idea.votes}
+                                </button>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-dollar-sign mr-1 text-green-500"></i>
+                                <span>${idea.funded} backed</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+        ideaGrid.appendChild(card);
+      });
+    }
+
+    // Update filter labels and values
+    function updateFilter(type, value, labelId) {
+      currentFilters[type] = value;
+      document.getElementById(labelId).textContent = value;
+      filterIdeas();
+    }
+
+    // Filter ideas based on current filters and search
+    function filterIdeas() {
+      const searchTerm = document.getElementById('search').value.toLowerCase();
+
+      let filtered = ideas.filter(idea => {
+        // Search term matching
+        const matchesSearch =
+          idea.title.toLowerCase().includes(searchTerm) ||
+          idea.tool.toLowerCase().includes(searchTerm) ||
+          idea.description.toLowerCase().includes(searchTerm) ||
+          idea.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+
+        // Tool filter
+        const matchesTool = currentFilters.tool === "All Tools" || idea.tool === currentFilters.tool;
+
+        // Category filter
+        const matchesCategory =
+          currentFilters.category === "All Categories" ||
+          idea.tags.includes(currentFilters.category);
+
+        return matchesSearch && matchesTool && matchesCategory;
+      });
+
+      // Apply sorting
+      if (currentFilters.sort === "Top Boosted") {
+        filtered.sort((a, b) => b.votes - a.votes);
+      } else if (currentFilters.sort === "Newest") {
+        filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+      } else if (currentFilters.sort === "Most Funded") {
+        filtered.sort((a, b) => b.funded - a.funded);
+      }
+
+      renderIdeas(filtered);
+    }
+
+    // Sort ideas
+    function sortIdeas(sortBy) {
+      let sortedIdeas = [...ideas];
+
+      if (sortBy === 'votes') {
+        sortedIdeas.sort((a, b) => b.votes - a.votes);
+      } else if (sortBy === 'newest') {
+        sortedIdeas.sort((a, b) => new Date(b.date) - new Date(a.date));
+      } else if (sortBy === 'funded') {
+        sortedIdeas.sort((a, b) => b.funded - a.funded);
+      }
+
+      renderIdeas(sortedIdeas);
+    }
+  </script>
+</body>
+
+</html>

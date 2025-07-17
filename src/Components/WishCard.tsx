@@ -1,7 +1,13 @@
 // Components/WishCard.tsx
 import { Star } from "lucide-react";
 
-const WishCard = ({ title, description, tags, author, stars }: {
+const WishCard = ({
+  title,
+  description,
+  tags,
+  author,
+  stars,
+}: {
   title: string;
   description: string;
   tags: string[];
@@ -18,16 +24,7 @@ const WishCard = ({ title, description, tags, author, stars }: {
       </div>
       <h3 className="text-lg font-bold">{title}</h3>
       <p className="text-sm text-gray-200">{description}</p>
-      {/* <div className="flex flex-wrap gap-2">
-        {tags.map((tag, i) => (
-          <span
-            key={i}
-            className="text-xs px-2 py-1 rounded-full bg-green-700/80 text-white"
-          >
-            {tag}
-          </span>
-        ))}
-      </div> */}
+
       <div className="flex items-center gap-1 text-yellow-400 text-sm font-bold">
         <Star size={16} fill="currentColor" />
         {stars}

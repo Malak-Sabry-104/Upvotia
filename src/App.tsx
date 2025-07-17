@@ -3,13 +3,15 @@ import "./embla.css";
 import Hero from "./Components/Hero";
 import TrendingWishes from "./Components/TrendingWishes";
 import Contact from "./Components/Contact";
-// import Slider from "./Components/Slider";
+import HowItWorksCards from "./Components/HowItWorksCards";
 const App: React.FC = () => (
   <>
     <Hero />
+    <HowItWorksCards />
+
     <TrendingWishes />
+
     <Contact />
-    {/* <Slider/> */}
   </>
 );
 

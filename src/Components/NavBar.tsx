@@ -16,7 +16,7 @@ const NavBar = () => {
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "Explore ", href: "#" },
+    { name: "Explore ", href: "/ideas" },
     { name: "DevHub", href: "#" },
     { name: "Contact", href: "/#contact" },
   ];
@@ -59,7 +59,7 @@ const NavBar = () => {
               </HashLink>
             </li>
             <li>
-              <HashLink to="#" className="hover:text-white/90">
+              <HashLink to="/ideas" smooth={true} className="hover:text-white/90">
                 Explore{" "}
               </HashLink>
             </li>
