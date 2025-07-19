@@ -12,12 +12,13 @@ export default function HowItWorksCards() {
     <>
       <section
         style={{
-          height: "70vh",
+          height: "100vh",
           width: "100%",
           backdropFilter: "blur(10px)",
-          WebkitBackdropFilter: "blur(10px)",
+          WebkitBackdropFilter: "blur(10px)"
         }}
-        className="py-6 section-gradient-center   flex flex-col justify-center  mx-auto px-8  rounded-xl"
+        className="py-6  section-gradient-center 
+         flex flex-col justify-center items-center  mx-auto px-8  rounded-xl"
       >
 
         <h2

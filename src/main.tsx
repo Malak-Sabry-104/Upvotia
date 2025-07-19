@@ -8,7 +8,8 @@ import Auth from "./Routes/Auth.tsx";
 import Layout from "./Components/Layout.tsx";
 import Explore from "./Routes/Explore.tsx";
 import BoostPage from "./Routes/BoostPage.tsx";
-import Devhub from "./Routes/devhub.tsx";
+import Devhub from "./Routes/Devhub.tsx";
+import Profile from "./Routes/Profile.tsx";
 
 
 createRoot(document.getElementById("root")!).render(
@@ -22,6 +23,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/ideas" element={<Explore />} />
            <Route path="/boost/:id" element={<BoostPage/>} />
            <Route path="/devhub" element={<Devhub/>} />
+           {/* <Route path="/profile/:id" element={<Profile/>} /> */}
         </Route>
       </Routes>
     </BrowserRouter>

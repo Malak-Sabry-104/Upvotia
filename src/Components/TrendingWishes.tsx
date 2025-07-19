@@ -10,8 +10,8 @@ const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
 const TrendingWishes: React.FC = () => (
   <>
     <section
-      style={{ height: "110vh", width: "100%" }}
-      className="section-gradient-top-left"
+      style={{  width: "100%" }}
+      className="section-gradient-top-left md:h-[110vh] h-[130vh]"
     >
 
       <h1
