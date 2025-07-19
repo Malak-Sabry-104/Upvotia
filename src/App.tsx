@@ -8,7 +8,6 @@ const App: React.FC = () => (
   <>
     <Hero />
     <HowItWorksCards />
-
     <TrendingWishes />
 
     <Contact />

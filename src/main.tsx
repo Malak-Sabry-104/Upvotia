@@ -9,6 +9,7 @@ import Layout from "./Components/Layout.tsx";
 import Explore from "./Routes/Explore.tsx";
 import BoostPage from "./Routes/BoostPage.tsx";
 
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>

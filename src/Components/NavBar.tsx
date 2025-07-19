@@ -3,7 +3,8 @@ import logo from "../assets/logo.png";
 import person from "../assets/images.png";
 import { LogIn, UserPlus, Sparkle, User, LogOut } from "lucide-react";
 import { HashLink } from "react-router-hash-link";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import IgniteItForm from "../Routes/IgniteForm";
 
 const NavBar = () => {
   const [activeLink, setActiveLink] = useState("Home");
@@ -42,6 +43,15 @@ const NavBar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+
+
+
+    const [showForm, setShowForm] = useState(false);
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      document.body.style.overflowY = showForm ? 'hidden' : 'auto';
+    }, [showForm]);
   return (
     <>
       {/* Main NavBar */}
@@ -125,10 +135,21 @@ const NavBar = () => {
 
             {isLoggedIn && (
               <>
-                {/* New Wish */}
+  {/* New Wish */}
                 <HashLink
+                  onClick={() => setShowForm(true)}
                   to="#"
-                  className="bg-black inline-flex items-center px-3 py-2 text-xs font-medium rounded-md text-white/90 pink-gradient-bg shadow-sm uppercase gap-2"
+
+                  className="bg-black
+                   inline-flex items-center px-3 py-2 text-xs font-medium
+                    rounded-md text-white/90 pink-gradient-bg shadow-sm uppercase gap-2
+                    
+                    
+                     backdrop-blur-2xl 
+                  z-10 relative  
+                  transition duration-300 hover:-translate-y-1 hover:shadow-lg 
+                  hover:shadow-[#144D35]/30 transform 
+                    "
                 >
                   <Sparkle className="w-5 h-5" />
                   Ignite It
@@ -197,11 +218,10 @@ const NavBar = () => {
                   to={item.href}
                   smooth={true}
                   onClick={() => setActiveLink(item.name)}
-                  className={`px-3 py-1 rounded-md transition-colors duration-200 ${
-                    activeLink === item.name
+                  className={`px-3 py-1 rounded-md transition-colors duration-200 ${activeLink === item.name
                       ? "bg-white/10 py-2 text-white"
                       : "hover:text-white/90"
-                  }`}
+                    }`}
                 >
                   {item.name}
                 </HashLink>
@@ -210,6 +230,21 @@ const NavBar = () => {
           </ul>
         </nav>
       )}
+                {/* Modal */}
+                {showForm && (
+                  <div className="fixed w-[100vw] h-[100vh] z-50 pt-10 overflow-y-auto flex justify-center bg-black/50 bg-opacity-50 backdrop-blur-sm">
+                    <div className="relative">
+                      <button
+                        onClick={() => setShowForm(false)}
+                        className="absolute -top-4 -right-15 bg-black/40 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold"
+                      >
+                        ✕
+                      </button>
+                    
+                      <IgniteItForm />
+                    </div>
+                  </div>
+                )}
     </>
   );
 };

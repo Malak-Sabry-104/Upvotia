@@ -192,8 +192,10 @@ function Input({
 }: InputProps) {
   return (
     <div className="w-full">
-      {/* outline موحَّد دائمًا */}
-      <div className="flex items-center gap-2 bg-transparent ring-1 ring-white/10 mt-2 rounded-md px-3 py-2 transition-all duration-400 focus-within:ring-2 focus-within:ring-[#123727] focus-within:shadow-[0_0_5px_#00ff88,0_0_8px_#00ff88]">
+      <div className="flex items-center gap-2 bg-transparent 
+      ring-1 ring-white/10 mt-2 rounded-md px-3 py-2
+       transition-all duration-400 focus-within:ring-2 
+       focus-within:ring-[#123727] focus-within:shadow-[0_0_5px_#00ff88,0_0_8px_#00ff88]">
         {icon}
         <input
           type={type}
