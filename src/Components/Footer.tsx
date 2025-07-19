@@ -69,7 +69,7 @@ export default function Footer() {
                   href="#"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Explore Wishes
+                  Explore 
                 </a>
               </li>
               <li>
@@ -77,7 +77,7 @@ export default function Footer() {
                   href="#"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Create Wish
+                ignite an idea
                 </a>
               </li>
             </ul>
