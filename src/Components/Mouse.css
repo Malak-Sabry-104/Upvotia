@@ -1,7 +1,12 @@
 .ball {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 13px;
   height: 13px;
   border-radius: 100%;
-  box-shadow: rgba(0, 0, 0, 0.112) 3px 4px 8px;
+  pointer-events: none;
+  z-index: 9999;
   background-image: linear-gradient(to left, #2b815d5b, #279163);
+  box-shadow: rgba(0, 0, 0, 0.112) 3px 4px 8px;
 }

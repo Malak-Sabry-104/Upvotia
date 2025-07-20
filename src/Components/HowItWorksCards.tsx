@@ -12,7 +12,7 @@ export default function HowItWorksCards() {
     <>
       <section
         style={{
-          height: "80vh",
+          minHeight: "80vh",
           width: "100%",
           backdropFilter: "blur(10px)",
           WebkitBackdropFilter: "blur(10px)"
@@ -27,7 +27,7 @@ export default function HowItWorksCards() {
         >
           How does Upvotia work?
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mx-[5rem]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:mx-[5rem]">
           {steps.map(({ text, icon }, i) => (
             <div
               key={i}

@@ -11,14 +11,14 @@ const TrendingWishes: React.FC = () => (
   <>
     <section
       style={{  width: "100%" }}
-      className="section-gradient-top-left md:h-[110vh] h-[130vh]"
+      className="section-gradient-top-left md:h-[110vh] min-h-[130vh]"
     >
 
       <h1
         className="capitalize text-4xl pt-7 pb-2 text-center font-semibold"
         style={{ fontFamily: "'Bebas Neue', cursive" }}
       >
-        Trending Wishes
+        Trending Ideas
       </h1>
       <WishesGrid/>
 

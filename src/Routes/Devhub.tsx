@@ -91,7 +91,8 @@ export default function Devhub() {
   const statusOptions = ["All Statuses", "Ready", "In Development"];
 
   return (
-    <section className="section-gradient-top-left min-h-screen px-8 pt-20 pb-10">
+    <section className="section-gradient-top-left  min-h-screen flex flex-col items-center 
+    md:px-8 pt-20 pb-10">
       <h1 className="text-white text-4xl font-bold mb-8">Developer Dashboard</h1>
 
       {/* Filters */}
@@ -124,7 +125,7 @@ export default function Devhub() {
       </div>
 
       {/* Project Cards Grid */}
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 md:grid-cols-2 w-[85%] lg:grid-cols-3">
         {filteredProjects.length === 0 ? (
           <p className="text-gray-400 text-center col-span-full">
             No projects found. Try different filters.

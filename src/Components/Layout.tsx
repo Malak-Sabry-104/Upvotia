@@ -1,15 +1,15 @@
+import { Outlet } from "react-router-dom";
+import MouseTrail from "./Mouse";
 import NavBar from "./NavBar";
-import { Outlet } from "react-router";
 import Footer from "./Footer";
 
-const Layout = () => {
+export default function Layout() {
   return (
     <>
-      <NavBar />
-      <Outlet />
-      <Footer />
+      <MouseTrail /> {/* 👈 Add this */}
+      <NavBar />      {/* your nav or layout */}
+        <Outlet />    {/* all page content */}
+<Footer/>
     </>
   );
-};
-
-export default Layout;
+}

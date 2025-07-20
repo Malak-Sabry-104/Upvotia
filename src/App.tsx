@@ -6,6 +6,7 @@ import Contact from "./Components/Contact";
 import HowItWorksCards from "./Components/HowItWorksCards";
 const App: React.FC = () => (
   <>
+  
     <Hero />
     <HowItWorksCards />
     <TrendingWishes />

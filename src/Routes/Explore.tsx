@@ -150,11 +150,11 @@ export default function ExploreAsks() {
 
   return (
     <section
-      style={{ height: "140vh", width: "100%" }}
-      className="section-gradient-top-left"
+      style={{  width: "100%" }}
+      className="section-gradient-top-left md:h-[140vh] h-[270vh] "
     >
       <div className=" font-sans pt-[5rem]">
-        <div className=" mx-[4rem] px-4 pt-6">
+        <div className=" md:mx-[4rem] px-4 pt-6">
           <div className="bg-black/10 ring-1 ring-white/10 rounded-lg shadow p-4 mb-6">
             <div className="flex flex-col md:flex-row md:items-center md:space-x-4 space-y-4 md:space-y-0">
               <div className="flex-1 relative">

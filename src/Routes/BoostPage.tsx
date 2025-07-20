@@ -112,8 +112,8 @@ export default function BoostPage() {
 
   return (
     <div 
-    style={{height: "120vh", width: "100%"}}
-    className=" section-gradient-bottom-right p-10 text-white  px-[8rem] pt-[6rem]">
+    style={{ width: "100%"}}
+    className=" section-gradient-bottom-right md:h-[120vh] h-[100vh] p-10 text-white  md:px-[8rem] pt-[6rem]">
       <h1 className="text-3xl font-bold mb-2">{idea.title}</h1>
       <p className="text-sm text-gray-400 mb-4">
         Tool: {idea.tool} • Date: {idea.date}
