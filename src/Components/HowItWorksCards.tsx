@@ -12,7 +12,7 @@ export default function HowItWorksCards() {
     <>
       <section
         style={{
-          height: "100vh",
+          height: "80vh",
           width: "100%",
           backdropFilter: "blur(10px)",
           WebkitBackdropFilter: "blur(10px)"

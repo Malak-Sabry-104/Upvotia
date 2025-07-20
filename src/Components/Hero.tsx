@@ -37,7 +37,7 @@ const Hero = () => {
       <section className="relative md:mb-0 mb-[4rem] z-10 h-screen
        w-full overflow-hidden flex  
        items-center justify-center text-center px-6"
-        style={{ height: "80vh" }}>
+        style={{ height: "100vh" }}>
         {/* Background effects */}
         <div className="gradient-blur-top-left absolute z-0"></div>
         <div className="gradient-blur-horizontal absolute z-0"></div>
