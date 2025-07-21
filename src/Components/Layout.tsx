@@ -34,6 +34,9 @@ export default function Layout() {
     document.body.style.overflowY = showForm ? "hidden" : "auto";
   }, [showForm]);
 
+  useEffect(() => {
+    document.title = "Upvotia | Where Ideas Meet Code"; 
+  }, []);
   return (
     <>
       <MouseTrail />

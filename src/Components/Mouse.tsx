@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./Mouse.css"; // Don't forget this CSS file!
+import "./Mouse.css"; 
 
 export default function MouseTrail() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
