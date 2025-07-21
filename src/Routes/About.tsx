@@ -9,7 +9,7 @@ import {
 
 const AboutUs = () => {
   return (
-    <section className="bg-gradient-to-br from-[#040F0C] via-[#03130D] to-[#010805] text-white min-h-screen px-6 py-16 md:px-20">
+    <section className="animate-on-scroll  bg-gradient-to-br from-[#040F0C] via-[#03130D] to-[#010805] text-white min-h-screen px-6 py-16 md:px-20">
       {/* Header */}
       <div className="mb-16 max-w-3xl">
         <h1 className="text-4xl md:text-4xl mt-[2rem] font-bold mb-4 flex items-center gap-3 text-green-300 drop-shadow-glow">

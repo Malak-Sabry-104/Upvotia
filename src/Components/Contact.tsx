@@ -60,7 +60,7 @@ const ContactSection: React.FC = () => {
     <section
       id="contact"
       style={{ minHeight: "100vh", width: "100%" }}
-      className=" section-gradient-top-right min-h-screen  text-white px-6 py-12 md:px-20 flex flex-col md:flex-row gap-10 "
+      className="  animate-on-scroll section-gradient-top-right min-h-screen  text-white px-6 py-12 md:px-20 flex flex-col md:flex-row gap-10 "
     >
       {/* Left: Contact Info */}
       <div className="  flex-1 relative md:left-[-45px] ">

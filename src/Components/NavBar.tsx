@@ -13,6 +13,7 @@ import {
 import { HashLink } from "react-router-hash-link";
 import { Link, useNavigate } from "react-router-dom";
 import IgniteItForm from "../Routes/IgniteForm";
+import { FaMagic } from "react-icons/fa";
 
 const MobileProfileDropdown = ({
   person,
@@ -86,7 +87,7 @@ const MobileProfileDropdown = ({
   );
 };
 
-const NavBar = () => {
+const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const [activeLink, setActiveLink] = useState("Home");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [showMiniNav, setShowMiniNav] = useState(false);
@@ -96,7 +97,6 @@ const NavBar = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  const isLoggedIn = true;
 
   const navItems = [
     { name: "Home", href: "/" },
@@ -146,10 +146,12 @@ const NavBar = () => {
           ${showMiniNav ? "opacity-0 pointer-events-none" : "opacity-100"}
         `}
       >
-        <HashLink to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Upvotia Logo" className="w-[50px] sm:w-[60px]" />
+        <a href="/" className="flex items-center gap-2">
+                      <FaMagic className="text-secondary text-2xl mr-2" />
+        
+          {/* <img src={logo} alt="Upvotia Logo" className="w-[50px] sm:w-[60px]" /> */}
           <h4 className="text-white text-lg sm:text-xl font-bold">Upvotia</h4>
-        </HashLink>
+        </a>
 
         {/* Desktop Navigation */}
         <ul className="hidden lg:flex justify-between items-center text-gray-300/70 gap-6 xl:gap-8 font-medium">
@@ -368,9 +370,11 @@ const NavBar = () => {
           ${showMiniNav ? "opacity-100" : "opacity-0 pointer-events-none"}
         `}
       >
-        <HashLink to="/">
-          <img src={logo} alt="Upvotia Logo" className="w-[40px] sm:w-[50px]" />
-        </HashLink>
+        <a href="/">
+          {/* <img src={logo} alt="Upvotia Logo" className="w-[40px] sm:w-[50px]" /> */}
+                        <FaMagic  className="text-white/50 text-2xl mr-2" />
+
+        </a>
 
         {/* Desktop Mini Nav Items */}
         <ul className="hidden sm:flex justify-center items-center text-gray-300/70 gap-4 lg:gap-6 xl:gap-8 font-medium text-sm lg:text-base">

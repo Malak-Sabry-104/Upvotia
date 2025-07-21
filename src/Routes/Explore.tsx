@@ -151,7 +151,7 @@ export default function ExploreAsks() {
   return (
     <section
       style={{  width: "100%" }}
-      className="section-gradient-top-left md:h-[140vh] h-[270vh] "
+      className="animate-on-scroll  section-gradient-top-left md:h-[140vh] h-[270vh] "
     >
       <div className=" font-sans pt-[5rem]">
         <div className=" md:mx-[4rem] px-4 pt-6">

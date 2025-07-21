@@ -11,7 +11,7 @@ const TrendingWishes: React.FC = () => (
   <>
     <section
       style={{  width: "100%" }}
-      className="section-gradient-top-left md:h-[110vh] min-h-[130vh]"
+      className="animate-on-scroll section-gradient-top-left md:h-[110vh] min-h-[130vh]"
     >
 
       <h1

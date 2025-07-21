@@ -5,50 +5,46 @@ import {
   FaInstagram,
   FaLinkedin,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-export default function Footer() {
+export default function Footer({
+  isLoggedIn,
+  setShowForm,
+}: {
+  isLoggedIn: boolean;
+  setShowForm: (value: boolean) => void;
+}) {
+  const navigate = useNavigate();
+
+  const handleIgniteClick = () => {
+    if (isLoggedIn) {
+      setShowForm(true);
+      navigate("#")
+    } else {
+      navigate("/auth#login");
+    }
+  };
+
   return (
-    <footer
-      className="  section-gradient-bottom-right"
-      style={{ minHeight: "50vh", width: "100%" }}
-    >
+    <footer className="section-gradient-bottom-right" style={{ minHeight: "50vh", width: "100%" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo & Description */}
           <div className="md:col-span-2">
-            <div className="flex items-center mb-4">
+            <a href="/" className="flex items-center mb-4">
               <FaMagic className="text-secondary text-2xl mr-2" />
               <span className="text-xl font-bold text-white">Upvotia</span>
-            </div>
+            </a>
             <p className="text-gray-400 mb-6">
               Where dreams find their wings and wishes become reality through
               the power of community.
             </p>
             <div className="flex space-x-4">
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaTwitter className="text-xl" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaFacebook className="text-xl" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaInstagram className="text-xl" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaLinkedin className="text-xl" />
-              </a>
+              {[FaTwitter, FaFacebook, FaInstagram, FaLinkedin].map((Icon, idx) => (
+                <a key={idx} href="#" className="text-gray-400 hover:text-white transition-colors">
+                  <Icon className="text-xl" />
+                </a>
+              ))}
             </div>
           </div>
 
@@ -57,28 +53,22 @@ export default function Footer() {
             <h3 className="text-white font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
+                <a href="/" className="text-gray-400 hover:text-white transition-colors">
                   Home
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Explore 
+                <a href="/ideas" className="text-gray-400 hover:text-white transition-colors">
+                  Explore
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
+                <button
+                  onClick={handleIgniteClick}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                ignite an idea
-                </a>
+                  Ignite an Idea
+                </button>
               </li>
             </ul>
           </div>
@@ -88,26 +78,17 @@ export default function Footer() {
             <h3 className="text-white font-semibold mb-4">Company</h3>
             <ul className="space-y-2">
               <li>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
+                <a href="/#contact" className="text-gray-400 hover:text-white transition-colors">
                   Contact
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">
                   Terms of Service
                 </a>
               </li>
@@ -121,24 +102,11 @@ export default function Footer() {
             © 2023 WishVault. All rights reserved.
           </p>
           <div className="flex space-x-6">
-            <a
-              href="#"
-              className="text-gray-500 hover:text-gray-300 text-sm transition-colors"
-            >
-              Privacy Policy
-            </a>
-            <a
-              href="#"
-              className="text-gray-500 hover:text-gray-300 text-sm transition-colors"
-            >
-              Terms of Service
-            </a>
-            <a
-              href="#"
-              className="text-gray-500 hover:text-gray-300 text-sm transition-colors"
-            >
-              Cookie Policy
-            </a>
+            {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((label, index) => (
+              <a key={index} href="#" className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
+                {label}
+              </a>
+            ))}
           </div>
         </div>
       </div>

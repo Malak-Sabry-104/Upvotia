@@ -63,9 +63,16 @@ export default function AuthCard() {
       </div>
 
       {/* Card */}
-      <div className="relative z-10 w-full max-w-4xl bg-black/20 rounded-3xl mt-[7rem] shadow-lg overflow-hidden flex transition-all duration-700 ease-in-out h-[80vh]">
+      <div className="relative z-10 w-full
+      
+      max-w-4xl bg-black/20 rounded-3xl 
+      mt-[7rem] shadow-lg overflow-hidden flex md:flex-row  flex-col
+      transition-all duration-700 ease-in-out md:h-[80vh] h-[100vh]">
         {/* Side panel */}
-        <div className="greeny-bg text-white w-1/2 p-10 flex flex-col justify-center items-center rounded-tr-[4rem] rounded-br-[4rem]">
+        <div className="greeny-bg md:mt-0 mt-[2rem] text-white
+         w-full md:w-1/2 p-10 flex flex-col justify-center items-center
+         rounded-[4rem] 
+          md:rounded-tr-[4rem] md:rounded-br-[4rem]">
           <h2 className="text-3xl font-bold mb-2">
             {isRegister ? "Welcome Back!" : "Hello, Welcome!"}
           </h2>
@@ -81,7 +88,7 @@ export default function AuthCard() {
         </div>
 
         {/* Forms */}
-        <div className="w-1/2 p-10 relative overflow-hidden">
+        <div className="w-full md:pt-0 pt-[25rem] md:w-1/2 p-10 relative overflow-hidden">
           {/* ───── Login ───── */}
           <div
             className={`absolute flex flex-col justify-center top-0 left-0 w-full h-full px-10 py-6 transition-all duration-700 ease-in-out ${
@@ -234,8 +241,6 @@ function SocialLogin() {
       <div className="flex justify-center gap-4 pt-3">
         <FaGoogle className="cursor-pointer text-white/40 w-[36px] h-[36px] py-2 bg-[#123727] rounded-md" />
         <FaFacebookF className="cursor-pointer text-white/40 w-[36px] h-[36px] py-2 bg-[#123727] rounded-md" />
-        <FaGithub className="cursor-pointer text-white/40 w-[36px] h-[36px] py-2 bg-[#123727] rounded-md" />
-        <FaLinkedin className="cursor-pointer text-white/40 w-[36px] h-[36px] py-2 bg-[#123727] rounded-md" />
       </div>
     </>
   );

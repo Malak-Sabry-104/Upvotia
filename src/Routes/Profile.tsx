@@ -20,10 +20,10 @@ interface ProfileData {
   role: "user" | "dev";
   github?: string;
   twitter?: string;
-  ideas?: string[]; // عناوين أو وصف أفكار
-  projects?: string[]; // عناوين مشاريع
-  boosts?: string[]; // بوستات عملها الشخص
-  comments?: string[]; // تعليقاته
+  ideas?: string[]; 
+  projects?: string[]; 
+  boosts?: string[]; 
+  comments?: string[]; 
 }
 
 const mockProfiles: ProfileData[] = [
@@ -70,7 +70,7 @@ const Profile = () => {
     );
 
   return (
-    <div className="max-w-4xl mx-auto p-6 mt-[5rem]">
+    <div className="animate-on-scroll max-w-4xl mx-auto p-6 mt-[5rem]">
       {/* Header */}
       <div className="flex items-center space-x-6">
         <img

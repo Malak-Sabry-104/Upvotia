@@ -2,12 +2,17 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import placeholder from "../assets/placeholder.png";
 import IgniteItForm from "../Routes/IgniteForm";
+import { useOutletContext } from "react-router-dom";
+
+interface ContextType {
+  isLoggedIn: boolean;
+}
 
 const Hero = () => {
+   const { isLoggedIn } = useOutletContext<ContextType>();
   const [showForm, setShowForm] = useState(false);
   const navigate = useNavigate();
 
-  const isLoggedIn = true;
 
   useEffect(() => {
     document.body.style.overflowY = showForm ? "hidden" : "auto";
@@ -15,25 +20,27 @@ const Hero = () => {
 
   return (
     <>
-    {/* Modal */}
-        {showForm && (
-          <div className="fixed w-full h-full z-50 pt-4 sm:pt-10 overflow-y-auto flex justify-center bg-black/50 bg-opacity-50 backdrop-blur-sm px-4">
-            <div className="relative w-full max-w-lg">
-              <button
-                onClick={() => setShowForm(false)}
-                className="absolute -top-4 md:right-4 right-[0px] bg-black/60
+      {/* Modal */}
+      {showForm && (
+        <div className="fixed w-full h-full z-50 pt-4 sm:pt-10 overflow-y-auto flex justify-center bg-black/50 bg-opacity-50 backdrop-blur-sm px-4">
+          <div className="relative w-full max-w-lg">
+            <button
+              onClick={() => setShowForm(false)}
+              className="absolute -top-4 md:right-4 right-[0px] bg-black/60
      text-white rounded-full w-7 h-7 flex items-center 
      justify-center font-bold hover:bg-black/80 transition"
-              >
-                ✕
-              </button>
-              <IgniteItForm />
-            </div>
+            >
+              ✕
+            </button>
+            <IgniteItForm />
           </div>
-        )}
+        </div>
+      )}
 
       {/* Hero Section */}
-      <section className="relative mb-0 z-10 h-screen w-full overflow-hidden flex items-center justify-center text-center px-6">
+      <section className="
+      animate-on-scroll
+      relative mb-0 z-10 h-screen w-full overflow-hidden flex items-center justify-center text-center px-6">
         {/* Background effects */}
         <div className="gradient-blur-top-left absolute z-0"></div>
         <div className="gradient-blur-horizontal absolute z-0"></div>
@@ -86,8 +93,13 @@ const Hero = () => {
                 {/* Explore button */}
                 <div className="relative">
                   <button
+                    onClick={() => {
+
+                      navigate("/ideas");
+                    }}
                     className="bg-[#144D35]/50 backdrop-blur-2xl z-10 relative text-white py-3 rounded-lg font-semibold transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#144D35]/30 transform px-6"
                   >
+
                     Explore
                   </button>
                   <span className="w-[100px] h-[60px] bg-greeny-custom absolute rounded-full blur-lg left-1/2 -translate-x-1/2 z-0 -bottom-1/2"></span>
@@ -99,7 +111,7 @@ const Hero = () => {
                     className="relative z-20 bg-main-green greeny-inset-shadowing ring-1 ring-white text-white py-3 rounded-lg font-semibold transition duration-300 ease-in-out hover:bg-white hover:shadow-lg hover:shadow-white/30 transform hover:-translate-y-1 hover:scale-100 px-9"
                     onClick={() => {
                       if (isLoggedIn) {
-                        navigate("#"); 
+                        navigate("#");
                         setShowForm(true);
                       } else {
                         navigate("/auth#login");

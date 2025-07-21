@@ -65,7 +65,7 @@ const EmblaCarousel: React.FC<PropType> = ({ options }) => {
   } = usePrevNextButtons(emblaApi);
 
   return (
-    <section className="embla ">
+    <section className="embla  ">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {wishes.map((wish, index) => (

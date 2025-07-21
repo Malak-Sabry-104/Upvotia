@@ -8,7 +8,7 @@ export default function IgniteItForm() {
   return (
     <>
       <div
-        className="bg-white/10 rounded-3xl flex flex-col justify-center py-10 px-6
+        className=" bg-white/10 rounded-3xl flex flex-col justify-center py-10 px-6
         max-w-lg mx-auto w-full text-white
         sm:px-10
         "

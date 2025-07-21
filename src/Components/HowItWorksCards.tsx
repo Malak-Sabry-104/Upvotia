@@ -17,7 +17,7 @@ export default function HowItWorksCards() {
           backdropFilter: "blur(10px)",
           WebkitBackdropFilter: "blur(10px)"
         }}
-        className="py-6  section-gradient-center 
+        className=" animate-on-scroll py-6  section-gradient-center 
          flex flex-col justify-center items-center  mx-auto px-8  rounded-xl"
       >
 

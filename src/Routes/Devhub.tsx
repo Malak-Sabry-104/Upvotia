@@ -91,7 +91,7 @@ export default function Devhub() {
   const statusOptions = ["All Statuses", "Ready", "In Development"];
 
   return (
-    <section className="section-gradient-top-left  min-h-screen flex flex-col items-center 
+    <section className="animate-on-scroll  section-gradient-top-left  min-h-screen flex flex-col items-center 
     md:px-8 pt-20 pb-10">
       <h1 className="text-white text-4xl font-bold mb-8">Developer Dashboard</h1>
 
