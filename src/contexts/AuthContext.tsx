@@ -73,6 +73,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     authService.logout();
     setUser(null);
     toast.success('Logged out successfully');
+    window.location.href = 'https://upvotia.netlify.app/auth'
   };
 
   const updateUser = async (userData: Partial<User>) => {

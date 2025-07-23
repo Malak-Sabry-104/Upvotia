@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaGithub, FaPlay, FaBook, FaClock, FaArrowUp, FaDollarSign } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import placeholder from "../assets/placeholder.png";
 import { projectService } from "../services/projectService";
 import type { Project } from "../types";
@@ -130,45 +131,50 @@ export default function Devhub() {
           projects.map((project) => (
             <div
               key={project.id}
-              className="blacky-bg rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-transform transform hover:-translate-y-1 cursor-pointer"
+              className="blacky-bg rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-transform transform hover:-translate-y-1"
             >
-              <img
-                src={project.image || placeholder}
-                alt={`${project.title} preview`}
-                className="w-full h-40 object-cover"
-              />
+              <Link to={`/project/${project.id}`} className="block">
+                <img
+                  src={project.image || placeholder}
+                  alt={`${project.title} preview`}
+                  className="w-full h-40 object-cover"
+                />
 
-              <div className="p-5">
-                <div className="flex justify-between items-center mb-3">
-                  <span className="px-3 py-1 bg-gray-700/50 rounded-full text-xs font-semibold text-white">
-                    {project.tool_app_name}
-                  </span>
-                  <span
-                    className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(project.status)}`}
-                  >
-                    {getStatusDisplay(project.status)}
-                  </span>
-                </div>
-
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  {project.title}
-                </h3>
-
-                <p className="text-gray-300 text-sm mb-3 line-clamp-2">
-                  {project.description}
-                </p>
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies_list.map((tech) => (
-                    <span
-                      key={tech}
-                      className="bg-white/10 text-white px-2 py-1 rounded text-xs"
-                    >
-                      {tech}
+                <div className="p-5 pb-3">
+                  <div className="flex justify-between items-center mb-3">
+                    <span className="px-3 py-1 bg-gray-700/50 rounded-full text-xs font-semibold text-white">
+                      {project.tool_app_name}
                     </span>
-                  ))}
+                    <span
+                      className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(project.status)}`}
+                    >
+                      {getStatusDisplay(project.status)}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-semibold text-white mb-2 hover:text-green-400 transition-colors">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-gray-300 text-sm mb-3 line-clamp-2">
+                    {project.description}
+                  </p>
+
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies_list.map((tech) => (
+                      <span
+                        key={tech}
+                        className="bg-white/10 text-white px-2 py-1 rounded text-xs"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
+              </Link>
+
+              <div className="px-5 pb-5">
 
                 {/* Links */}
                 <div className="flex space-x-4 mb-4 text-white/80">
@@ -177,8 +183,9 @@ export default function Devhub() {
                       href={project.github_repo}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex items-center gap-1 hover:text-[#123727]"
+                      className="flex items-center gap-1 hover:text-[#123727] transition z-10 relative"
                       title="GitHub Repo"
+                      onClick={(e) => e.stopPropagation()}
                     >
                       <FaGithub />
                       <span className="text-sm">GitHub</span>
@@ -189,8 +196,9 @@ export default function Devhub() {
                       href={project.demo_link}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex items-center gap-1 hover:text-[#123727]"
+                      className="flex items-center gap-1 hover:text-[#123727] transition z-10 relative"
                       title="Demo"
+                      onClick={(e) => e.stopPropagation()}
                     >
                       <FaPlay />
                       <span className="text-sm">Demo</span>
@@ -201,8 +209,9 @@ export default function Devhub() {
                       href={project.tutorial_link}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex items-center gap-1 hover:text-[#123727]"
+                      className="flex items-center gap-1 hover:text-[#123727] transition z-10 relative"
                       title="Tutorial"
+                      onClick={(e) => e.stopPropagation()}
                     >
                       <FaBook />
                       <span className="text-sm">Tutorial</span>
@@ -219,8 +228,12 @@ export default function Devhub() {
                   
                   <div className="flex items-center gap-4">
                     <button
-                      onClick={() => handleUpvote(project.id)}
-                      className="flex items-center gap-1 text-white hover:text-green-400 transition"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleUpvote(project.id);
+                      }}
+                      className="flex items-center gap-1 text-white hover:text-green-400 transition z-10 relative"
                     >
                       <FaArrowUp />
                       <span>{project.upvotes_count}</span>

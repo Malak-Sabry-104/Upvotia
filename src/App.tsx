@@ -39,7 +39,8 @@ const App: React.FC = () => {
           <Route path="*" element={<ErrorPage />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/ideas" element={<Explore />} />
-          <Route path="/boost/:id" element={<BoostPage />} />
+          <Route path="/wish/:id" element={<BoostPage />} />
+          <Route path="/project/:id" element={<BoostPage />} />
           <Route path="/devhub" element={<Devhub />} />
           <Route path="/about-us" element={<About />} />
           <Route path="/profile/:id" element={<Profile />} />

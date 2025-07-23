@@ -6,6 +6,6 @@ router = DefaultRouter()
 router.register(r'boosts', BoostViewSet, basename='boost')
 
 urlpatterns = [
+    path('boosts/create/', create_boost, name='create-boost'),
     path('', include(router.urls)),
-    path('create/', create_boost, name='create-boost'),
 ]

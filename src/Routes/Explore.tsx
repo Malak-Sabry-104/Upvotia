@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaSearch, FaArrowUp, FaDollarSign } from "react-icons/fa";
 import { HashLink } from "react-router-hash-link";
+import { Link } from "react-router-dom";
 import { wishService } from "../services/wishService";
 import type { Wish } from "../types";
 import { toast } from "react-toastify";
@@ -130,9 +131,9 @@ export default function ExploreAsks() {
                 return (
                   <div
                     key={wish.id}
-                    className="blacky-bg rounded-lg shadow hover:shadow-lg transition-transform duration-200 hover:-translate-y-1 cursor-pointer"
+                    className="blacky-bg rounded-lg shadow hover:shadow-lg transition-transform duration-200 hover:-translate-y-1"
                   >
-                    <div className="p-5">
+                    <Link to={`/wish/${wish.id}`} className="block p-5">
                       <div className="flex justify-between">
                         <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-500/20 text-white/50 ring-1">
                           {wish.tool_app_name}
@@ -142,10 +143,10 @@ export default function ExploreAsks() {
                         </span>
                       </div>
                       <div className="mt-4">
-                        <h3 className="text-lg font-medium text-white">
+                        <h3 className="text-lg font-medium text-white hover:text-green-400 transition-colors">
                           {wish.title}
                         </h3>
-                        <p className="mt-2 text-sm text-gray-500">
+                        <p className="mt-2 text-sm text-gray-500 line-clamp-3">
                           {wish.description}
                         </p>
                       </div>
@@ -159,11 +160,16 @@ export default function ExploreAsks() {
                           </span>
                         ))}
                       </div>
-                      <div className="mt-6 flex justify-between items-center">
-
+                    </Link>
+                    
+                    <div className="px-5 pb-5">
+                      <div className="flex justify-between items-center">
                         <button
-                          onClick={() => handleUpvote(wish.id)}
-                          className="flex items-center px-3 text-white py-1 border border-gray-300 shadow-sm text-sm rounded-md bg-green-200/30 cursor-pointer hover:bg-green-300/40"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleUpvote(wish.id);
+                          }}
+                          className="flex items-center px-3 text-white py-1 border border-gray-300 shadow-sm text-sm rounded-md bg-green-200/30 cursor-pointer hover:bg-green-300/40 transition"
                         >
                           <FaArrowUp className="mr-1" />
                           {wish.upvotes_count}

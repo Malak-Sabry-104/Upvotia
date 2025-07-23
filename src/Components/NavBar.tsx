@@ -166,7 +166,7 @@ const NavBar = () => {
         className={`
           bg-transparent backdrop-blur-md z-50 flex justify-between items-center 
           px-4 sm:px-6 py-3 fixed top-0 w-full transition-opacity duration-500 ease-in-out
-          ${showMiniNav ? "opacity-0 pointer-events-none" : "opacity-100"}
+          ${showMiniNav ? "md:opacity-0 md:pointer-events-none" : "opacity-100"}
         `}
       >
         <a href="/" className="flex items-center gap-2">
@@ -390,7 +390,7 @@ const NavBar = () => {
           fixed top-6 left-1/2 transform -translate-x-1/2 bg-transparent backdrop-blur-md 
           z-50 ring-2 ring-white/20 flex justify-center items-center gap-3 sm:gap-4 lg:gap-6 rounded-lg 
           px-3 sm:px-4 lg:px-6 py-3 w-auto transition-opacity duration-500 ease-in-out max-w-[90vw]
-          ${showMiniNav ? "opacity-100" : "opacity-0 pointer-events-none"}
+          ${showMiniNav ? "opacity-0 md:opacity-100" : "opacity-0 md:opacity-0 md:pointer-events-none"}
         `}
       >
         <a href="/">

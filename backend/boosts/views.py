@@ -6,15 +6,25 @@ from .models import Boost
 from .serializers import BoostSerializer
 
 class BoostViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Boost.objects.all().select_related('user')
+    queryset = Boost.objects.all().select_related('user', 'content_type')
     serializer_class = BoostSerializer
    
     def get_queryset(self):
-        queryset = Boost.objects.all().select_related('user')
+        queryset = Boost.objects.all().select_related('user', 'content_type')
         
         user_id = self.request.query_params.get('user')
         if user_id:
             queryset = queryset.filter(user_id=user_id)
+        
+        content_type = self.request.query_params.get('content_type')
+        object_id = self.request.query_params.get('object_id')
+        if content_type and object_id:
+            try:
+                from django.contrib.contenttypes.models import ContentType
+                ct = ContentType.objects.get(model=content_type)
+                queryset = queryset.filter(content_type=ct, object_id=object_id)
+            except ContentType.DoesNotExist:
+                queryset = queryset.none()
         
         return queryset
 

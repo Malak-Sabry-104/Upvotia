@@ -28,4 +28,14 @@ export const boostService = {
     });
     return response.data;
   },
+
+  async getItemBoosts(type: 'wish' | 'project', objectId: number): Promise<PaginatedResponse<Boost>> {
+    const response = await api.get('/boosts/', {
+      params: {
+        content_type: type,
+        object_id: objectId,
+      },
+    });
+    return response.data;
+  },
 };
