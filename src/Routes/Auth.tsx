@@ -1,4 +1,5 @@
 import React, { useEffect, useState, type ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   FaUser,
   FaLock,
@@ -10,11 +11,14 @@ import {
 import { MdEmail } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import type { LoginCredentials, RegisterData } from "../types";
 
-/* ---------- types ---------- */
 interface SubmitButtonProps {
   label: string;
+  loading?: boolean;
 }
+
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon: ReactNode;
   placeholder: string;
@@ -25,22 +29,31 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 /* ---------- main component ---------- */
 export default function AuthCard() {
   const [isRegister, setIsRegister] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { login, register, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   /* ── login form hooks ── */
   const {
     register: loginRegister,
     handleSubmit: handleLoginSubmit,
     formState: { errors: loginErrors },
-  } = useForm();
+  } = useForm<LoginCredentials>();
 
   /* ── register form hooks ── */
   const {
     register: regRegister,
     handleSubmit: handleRegSubmit,
     formState: { errors: regErrors },
-  } = useForm();
+  } = useForm<RegisterData>();
 
-  const location = useLocation();
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/');
+    }
+  }, [isAuthenticated, navigate]);
 
   useEffect(() => {
     if (location.hash === "#register") {
@@ -49,6 +62,30 @@ export default function AuthCard() {
       setIsRegister(false);
     }
   }, [location]);
+
+  const handleLogin = async (data: LoginCredentials) => {
+    setLoading(true);
+    try {
+      await login(data);
+      navigate('/');
+    } catch (error) {
+      console.error('Login error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleRegister = async (data: RegisterData) => {
+    setLoading(true);
+    try {
+      await register(data);
+      setIsRegister(false);
+    } catch (error) {
+      console.error('Registration error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section
@@ -77,10 +114,11 @@ export default function AuthCard() {
             {isRegister ? "Welcome Back!" : "Hello, Welcome!"}
           </h2>
           <p className="mb-6 text-sm">
-            {isRegister ? "Already have an account?" : "Don’t have an account?"}
+            {isRegister ? "Already have an account?" : "Don't have an account?"}
           </p>
           <button
             onClick={() => setIsRegister(!isRegister)}
+            disabled={loading}
             className="px-5 py-2 ring-2 ring-white/10 rounded-full bg-black/30 hover:text-[#39a476] transition cursor-pointer hover:shadow-lg hover:shadow-[#184a34] transform hover:-translate-y-1 hover:scale-100"
           >
             {isRegister ? "Login" : "Register"}
@@ -100,7 +138,7 @@ export default function AuthCard() {
             <h2 className="text-3xl text-white/60 mb-6">Login</h2>
             <form
               id="login"
-              onSubmit={handleLoginSubmit((data) => console.log("Login", data))}
+              onSubmit={handleLoginSubmit(handleLogin)}
               className="flex flex-col gap-4"
             >
               <Input
@@ -124,7 +162,7 @@ export default function AuthCard() {
                 })}
                 error={loginErrors.password?.message as string}
               />
-              <SubmitButton label="Login" />
+              <SubmitButton label="Login" loading={loading} />
             </form>
             <SocialLogin />
           </div>
@@ -140,9 +178,7 @@ export default function AuthCard() {
           >
             <h2 className="text-3xl text-white/60 mb-6">Register</h2>
             <form
-              onSubmit={handleRegSubmit((data) =>
-                console.log("Register", data)
-              )}
+              onSubmit={handleRegSubmit(handleRegister)}
               className="flex flex-col gap-4"
             >
               <Input
@@ -179,7 +215,16 @@ export default function AuthCard() {
                 })}
                 error={regErrors.password?.message as string}
               />
-              <SubmitButton label="Register" />
+              <Input
+                icon={<FaLock />}
+                placeholder="Confirm Password"
+                type="password"
+                {...regRegister("password_confirm", {
+                  required: "Please confirm your password",
+                })}
+                error={regErrors.password_confirm?.message as string}
+              />
+              <SubmitButton label="Register" loading={loading} />
             </form>
             <SocialLogin />
           </div>
@@ -217,14 +262,17 @@ function Input({
 }
 
 /* ---------- Button ---------- */
-function SubmitButton({ label }: SubmitButtonProps) {
+function SubmitButton({ label, loading = false }: SubmitButtonProps) {
   return (
     <div className="relative z-10 mt-2">
       <button
         type="submit"
-        className="w-full relative z-20 bg-main-green greeny-inset-shadowing ring-1 ring-white text-white px-6 py-3 rounded-lg font-semibold transition duration-300 ease-in-out hover:bg-white  hover:shadow-lg hover:shadow-white/30 transform hover:-translate-y-1 hover:scale-100"
+        disabled={loading}
+        className={`w-full relative z-20 bg-main-green greeny-inset-shadowing ring-1 ring-white text-white px-6 py-3 rounded-lg font-semibold transition duration-300 ease-in-out hover:bg-white hover:shadow-lg hover:shadow-white/30 transform hover:-translate-y-1 hover:scale-100 ${
+          loading ? 'opacity-50 cursor-not-allowed' : ''
+        }`}
       >
-        {label}
+        {loading ? 'Loading...' : label}
       </button>
       <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-[-16px] w-[100px] h-[50px] bg-greeny-custom rounded-full blur-md z-10"></span>
     </div>
