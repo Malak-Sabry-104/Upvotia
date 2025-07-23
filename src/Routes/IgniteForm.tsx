@@ -90,7 +90,8 @@ export default function IgniteItForm() {
       navigate('/ideas');
     } catch (error: any) {
       console.error('Submit failed:', error);
-      toast.error('Failed to submit. Please try again.');
+      // toast.error('Failed to submit. Please try again.');
+      toast.error('Please, fill all fields correctly and then resubmit.');
     } finally {
       setLoading(false);
     }
