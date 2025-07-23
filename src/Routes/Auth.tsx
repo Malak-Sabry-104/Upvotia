@@ -11,6 +11,7 @@ import {
 import { MdEmail } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useAuth } from "../contexts/AuthContext";
 import type { LoginCredentials, RegisterData } from "../types";
 
@@ -281,14 +282,28 @@ function SubmitButton({ label, loading = false }: SubmitButtonProps) {
 
 /* ---------- Social Icons ---------- */
 function SocialLogin() {
+  const handleGoogleLogin = () => {
+    toast.info('Google login coming soon!');
+  };
+
+  const handleFacebookLogin = () => {
+    toast.info('Facebook login coming soon!');
+  };
+
   return (
     <>
       <p className="text-center text-gray-400 mt-6 mb-2 text-sm">
         or login with social platforms
       </p>
       <div className="flex justify-center gap-4 pt-3">
-        <FaGoogle className="cursor-pointer text-white/40 w-[36px] h-[36px] py-2 bg-[#123727] rounded-md" />
-        <FaFacebookF className="cursor-pointer text-white/40 w-[36px] h-[36px] py-2 bg-[#123727] rounded-md" />
+        <FaGoogle 
+          onClick={handleGoogleLogin}
+          className="cursor-pointer text-white/40 w-[36px] h-[36px] py-2 bg-[#123727] rounded-md hover:text-white/60 transition-colors" 
+        />
+        <FaFacebookF 
+          onClick={handleFacebookLogin}
+          className="cursor-pointer text-white/40 w-[36px] h-[36px] py-2 bg-[#123727] rounded-md hover:text-white/60 transition-colors" 
+        />
       </div>
     </>
   );

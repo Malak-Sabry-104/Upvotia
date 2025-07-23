@@ -118,7 +118,7 @@ export default function ExploreAsks() {
             {wishes.length === 0 ? (
               <div className="col-span-full text-center py-12">
                 <FaSearch className="text-gray-300 text-3xl mb-4" />
-                <h3 className="text-lg font-medium text-gray-900">
+                <h3 className="text-lg font-medium text-white">
                   No wishes found
                 </h3>
                 <p className="text-sm text-gray-500">

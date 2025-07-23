@@ -6,6 +6,7 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import { useNavigate, Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Footer({
   isLoggedIn,
@@ -40,11 +41,30 @@ export default function Footer({
               the power of community.
             </p>
             <div className="flex space-x-4">
-              {[FaTwitter, FaFacebook, FaInstagram, FaLinkedin].map((Icon, idx) => (
-                <a key={idx} href="#" className="text-gray-400 hover:text-white transition-colors">
-                  <Icon className="text-xl" />
-                </a>
-              ))}
+              <button 
+                onClick={() => toast.info('Twitter integration coming soon!')}
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <FaTwitter className="text-xl" />
+              </button>
+              <button 
+                onClick={() => toast.info('Facebook integration coming soon!')}
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <FaFacebook className="text-xl" />
+              </button>
+              <button 
+                onClick={() => toast.info('Instagram integration coming soon!')}
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <FaInstagram className="text-xl" />
+              </button>
+              <button 
+                onClick={() => toast.info('LinkedIn integration coming soon!')}
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <FaLinkedin className="text-xl" />
+              </button>
             </div>
           </div>
 

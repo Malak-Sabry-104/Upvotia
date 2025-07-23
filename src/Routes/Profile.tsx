@@ -21,6 +21,8 @@ import {
   FaCode,
   FaSave,
   FaTimes,
+  FaLinkedin,
+  FaDiscord,
 } from "react-icons/fa";
 
 type TabType = "wishes" | "projects" | "boosts" | "comments";
@@ -268,6 +270,21 @@ const Profile = () => {
                     <FaTwitter size={20} /> Twitter
                   </a>
                 )}
+               
+               {/* Social Media Buttons with Coming Soon */}
+               <button
+                 onClick={() => toast.info('LinkedIn integration coming soon!')}
+                 className="flex items-center gap-2 text-gray-300 hover:text-white"
+               >
+                 <FaLinkedin size={20} /> LinkedIn
+               </button>
+               
+               <button
+                 onClick={() => toast.info('Discord integration coming soon!')}
+                 className="flex items-center gap-2 text-gray-300 hover:text-white"
+               >
+                 <FaDiscord size={20} /> Discord
+               </button>
               </div>
 
               {/* Edit Profile Button */}

@@ -61,16 +61,16 @@ const MobileProfileDropdown = ({
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-48 bg-black rounded-lg shadow-lg z-50">
+        <div className="absolute right-0 mt-2 w-56 bg-black rounded-lg shadow-lg z-50">
           <div className="px-4 py-3 border-b border-gray-700 flex items-center gap-3">
             <img
               src={user?.profile?.avatar || person}
               alt="Profile"
-              className="w-10 h-10 rounded-full ring-2 ring-gray-400"
+              className="w-10 h-10 rounded-full ring-2 ring-gray-400 flex-shrink-0"
             />
-            <div>
-              <p className="font-semibold text-white text-sm">{user?.username}</p>
-              <p className="text-gray-400 text-xs">{user?.email}</p>
+            <div className="flex-1 min-w-0">
+              <p className="font-semibold text-white text-sm truncate">{user?.username}</p>
+              <p className="text-gray-400 text-xs truncate">{user?.email}</p>
             </div>
           </div>
 
@@ -264,18 +264,18 @@ const NavBar = () => {
                 </button>
 
                 {isDropdownOpen && (
-                  <div className="dropdown-content absolute right-0 mt-2 w-48 lg:w-55 bg-black rounded-lg shadow-lg z-50">
-                    <div className="dropdown-header flex items-center px-4 py-3 border-b">
+                  <div className="dropdown-content absolute right-0 mt-2 w-48 lg:w-56 bg-black rounded-lg shadow-lg z-50">
+                    <div className="dropdown-header flex items-center px-4 py-3 border-b border-gray-700">
                       <img
                         src={user?.profile?.avatar || person}
-                        className="header-avatar w-8 h-8 lg:w-10 lg:h-10 rounded-full"
+                        className="header-avatar w-8 h-8 lg:w-10 lg:h-10 rounded-full flex-shrink-0"
                         alt="Profile"
                       />
-                      <div className="ml-3">
-                        <div className="font-bold text-sm lg:text-base">
+                      <div className="ml-3 flex-1 min-w-0">
+                        <div className="font-bold text-sm lg:text-base text-white truncate">
                           {user?.username}
                         </div>
-                        <div className="text-xs lg:text-sm text-gray-500">
+                        <div className="text-xs lg:text-sm text-gray-400 truncate">
                           {user?.email}
                         </div>
                       </div>
