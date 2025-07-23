@@ -1,4 +1,3 @@
-
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.fields import GenericRelation
@@ -55,4 +54,4 @@ class Upvote(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        return f"{self.user} upvoted {self.content_object}" 
+        return f"{self.user} upvoted {self.content_object}"

@@ -1,4 +1,3 @@
-
 from rest_framework import serializers
 from .models import Wish, Upvote
 from django.contrib.auth import get_user_model
