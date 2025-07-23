@@ -1,33 +1,30 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App.tsx";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ErrorPage from "./Routes/ErrorPage.tsx";
-import Auth from "./Routes/Auth.tsx";
-import Layout from "./Components/Layout.tsx";
-import Explore from "./Routes/Explore.tsx";
-import BoostPage from "./Routes/BoostPage.tsx";
-import Devhub from "./Routes/Devhub.tsx";
-import Profile from "./Routes/Profile.tsx";
-import About from "./Routes/About.tsx";
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import { AuthProvider } from './contexts/AuthContext'
+import './index.css'
+import 'react-toastify/dist/ReactToastify.css'
+import App from './App.tsx'
 
-
-createRoot(document.getElementById("root")!).render(
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />} path="/">
-          <Route element={<App />} index />
-          <Route path="*" element={<ErrorPage />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/ideas" element={<Explore />} />
-           <Route path="/boost/:id" element={<BoostPage/>} />
-           <Route path="/devhub" element={<Devhub/>} />
-           <Route path="/about-us" element={<About/>} />
-<Route path="/profile/:id" element={<Profile />} />      
-  </Route>
-      </Routes>
+      <AuthProvider>
+        <App />
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
+      </AuthProvider>
     </BrowserRouter>
-  </StrictMode>
-);
+  </StrictMode>,
+)
