@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiEndpont = 'http://localhost:4444/api';
+const apiEndpont = 'https://upvotia-backend.khaled.hackclub.app/api';
 
 const api = axios.create({
   baseURL: apiEndpont,
