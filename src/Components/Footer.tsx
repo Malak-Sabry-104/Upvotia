@@ -5,7 +5,7 @@ import {
   FaInstagram,
   FaLinkedin,
 } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Footer({
   isLoggedIn,
@@ -53,14 +53,19 @@ export default function Footer({
             <h3 className="text-white font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="/" className="text-gray-400 hover:text-white transition-colors">
+                <Link to="/" className="text-gray-400 hover:text-white transition-colors">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/ideas" className="text-gray-400 hover:text-white transition-colors">
+                <Link to="/ideas" className="text-gray-400 hover:text-white transition-colors">
                   Explore
-                </a>
+                </Link>
+              </li>
+              <li>
+                <Link to="/devhub" className="text-gray-400 hover:text-white transition-colors">
+                  Developer Hub
+                </Link>
               </li>
               <li>
                 <button
@@ -78,19 +83,29 @@ export default function Footer({
             <h3 className="text-white font-semibold mb-4">Company</h3>
             <ul className="space-y-2">
               <li>
+                <Link to="/about-us" className="text-gray-400 hover:text-white transition-colors">
+                  About Us
+                </Link>
+              </li>
+              <li>
                 <a href="/#contact" className="text-gray-400 hover:text-white transition-colors">
                   Contact
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <Link to="/privacy" className="text-gray-400 hover:text-white transition-colors">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <Link to="/terms" className="text-gray-400 hover:text-white transition-colors">
                   Terms of Service
-                </a>
+                </Link>
+              </li>
+              <li>
+                <Link to="/cookies" className="text-gray-400 hover:text-white transition-colors">
+                  Cookie Policy
+                </Link>
               </li>
             </ul>
           </div>
@@ -99,14 +114,18 @@ export default function Footer({
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm mb-4 md:mb-0">
-            © 2023 WishVault. All rights reserved.
+            © {new Date().getFullYear()} Upvotia. All rights reserved.
           </p>
           <div className="flex space-x-6">
-            {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((label, index) => (
-              <a key={index} href="#" className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
-                {label}
-              </a>
-            ))}
+            <Link to="/privacy" className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
+              Terms of Service
+            </Link>
+            <Link to="/cookies" className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
+              Cookie Policy
+            </Link>
           </div>
         </div>
       </div>
