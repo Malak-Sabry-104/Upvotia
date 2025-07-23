@@ -114,7 +114,7 @@ export default function IgniteItForm() {
               Submit Your Idea
             </h1>
             <h1
-              className={`absolute inset-0 text-3xl font-bold transition-all duration-500 ease-in-out transform
+              className={`absolute inset-0 md:text-3xl text-xl font-bold transition-all duration-500 ease-in-out transform
               ${isDevMode ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-3 scale-95"}`}
             >
               Submit Your Project
