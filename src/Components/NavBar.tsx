@@ -320,7 +320,6 @@ const NavBar = () => {
           lg:hidden fixed inset-0 bg-black/95 backdrop-blur-md z-40 
           transition-opacity duration-300 ease-in-out
           ${isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"}
-          ${showMiniNav ? "opacity-0 pointer-events-none" : ""}
         `}
       >
         <div className="flex flex-col items-center justify-center h-full space-y-8">
