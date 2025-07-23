@@ -14,16 +14,16 @@ import { HashLink } from "react-router-hash-link";
 import { Link, useNavigate } from "react-router-dom";
 import IgniteItForm from "../Routes/IgniteForm";
 import { FaMagic } from "react-icons/fa";
+import { useAuth } from "../contexts/AuthContext";
 
 const MobileProfileDropdown = ({
-  person,
   onClose,
 }: {
-  person: string;
   onClose: () => void;
 }) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -40,6 +40,12 @@ const MobileProfileDropdown = ({
 
   const toggleDropdown = () => setOpen(!open);
 
+  const handleLogout = () => {
+    logout();
+    onClose();
+    setOpen(false);
+  };
+
   return (
     <div className="relative" ref={dropdownRef}>
       <button
@@ -47,25 +53,29 @@ const MobileProfileDropdown = ({
         className="ring-2 ring-black/40 w-12 h-12 rounded-full overflow-hidden"
         aria-label="Open profile menu"
       >
-        <img src={person} alt="Profile" className="w-full h-full object-cover" />
+        <img 
+          src={user?.profile?.avatar || person} 
+          alt="Profile" 
+          className="w-full h-full object-cover" 
+        />
       </button>
 
       {open && (
         <div className="absolute right-0 mt-2 w-48 bg-black rounded-lg shadow-lg z-50">
           <div className="px-4 py-3 border-b border-gray-700 flex items-center gap-3">
             <img
-              src={person}
+              src={user?.profile?.avatar || person}
               alt="Profile"
               className="w-10 h-10 rounded-full ring-2 ring-gray-400"
             />
             <div>
-              <p className="font-semibold text-white text-sm">Alexandra Chen</p>
-              <p className="text-gray-400 text-xs">alex44@gmail.com</p>
+              <p className="font-semibold text-white text-sm">{user?.username}</p>
+              <p className="text-gray-400 text-xs">{user?.email}</p>
             </div>
           </div>
 
           <Link
-            to="/profile/1"
+            to={`/profile/${user?.id}`}
             onClick={() => {
               onClose();
               setOpen(false);
@@ -76,7 +86,7 @@ const MobileProfileDropdown = ({
           </Link>
 
           <button
-            onClick={() => alert("Log Out clicked")}
+            onClick={handleLogout}
             className="w-full text-left px-4 py-2 hover:bg-red-700 text-red-500 flex items-center gap-2"
           >
             <LogOut className="w-4 h-4" /> Log Out
@@ -87,7 +97,7 @@ const MobileProfileDropdown = ({
   );
 };
 
-const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
+const NavBar = () => {
   const [activeLink, setActiveLink] = useState("Home");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [showMiniNav, setShowMiniNav] = useState(false);
@@ -96,7 +106,7 @@ const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-
+  const { isAuthenticated, user, logout } = useAuth();
 
   const navItems = [
     { name: "Home", href: "/" },
@@ -136,6 +146,19 @@ const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     setIsMobileMenuOpen(false);
   };
 
+  const handleLogout = () => {
+    logout();
+    setIsDropdownOpen(false);
+  };
+
+  const handleIgniteClick = () => {
+    if (isAuthenticated) {
+      setShowForm(true);
+    } else {
+      navigate('/auth');
+    }
+  };
+
   return (
     <>
       {/* Main NavBar */}
@@ -171,7 +194,7 @@ const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 
         {/* Desktop Auth Section */}
         <div className="hidden md:flex items-center gap-2 lg:gap-3 text-white/90">
-          {!isLoggedIn && (
+          {!isAuthenticated && (
             <>
               <Link
                 to="/auth#login"
@@ -209,24 +232,24 @@ const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
             </>
           )}
 
-          {isLoggedIn && (
-            <>
-              {/* New Wish */}
-              <HashLink
-                onClick={() => setShowForm(true)}
-                to="#"
-                className="bg-black
-                inline-flex items-center px-2 lg:px-3 py-2 text-xs font-medium
-                rounded-md text-white/90 pink-gradient-bg shadow-sm uppercase gap-1 lg:gap-2
-                backdrop-blur-2xl 
-                z-10 relative  
-                transition duration-300 hover:-translate-y-1 hover:shadow-lg 
-                hover:shadow-[#144D35]/30 transform"
-              >
-                <Sparkle className="w-4 h-4 lg:w-5 lg:h-5" />
-                <span className="hidden sm:inline">Ignite It</span>
-              </HashLink>
+          {/* Ignite It Button - Always visible */}
+          <HashLink
+            onClick={handleIgniteClick}
+            to="#"
+            className="bg-black
+            inline-flex items-center px-2 lg:px-3 py-2 text-xs font-medium
+            rounded-md text-white/90 pink-gradient-bg shadow-sm uppercase gap-1 lg:gap-2
+            backdrop-blur-2xl 
+            z-10 relative  
+            transition duration-300 hover:-translate-y-1 hover:shadow-lg 
+            hover:shadow-[#144D35]/30 transform"
+          >
+            <Sparkle className="w-4 h-4 lg:w-5 lg:h-5" />
+            <span className="hidden sm:inline">Ignite It</span>
+          </HashLink>
 
+          {isAuthenticated && (
+            <>
               {/* Profile Dropdown */}
               <div className="profile-dropdown relative" ref={dropdownRef}>
                 <button
@@ -234,7 +257,7 @@ const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 >
                   <img
-                    src={person}
+                    src={user?.profile?.avatar || person}
                     className="ring-2 ring-black/40 w-8 h-8 lg:w-10 lg:h-10 rounded-full"
                     alt="Profile"
                   />
@@ -244,32 +267,32 @@ const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
                   <div className="dropdown-content absolute right-0 mt-2 w-48 lg:w-55 bg-black rounded-lg shadow-lg z-50">
                     <div className="dropdown-header flex items-center px-4 py-3 border-b">
                       <img
-                        src={person}
+                        src={user?.profile?.avatar || person}
                         className="header-avatar w-8 h-8 lg:w-10 lg:h-10 rounded-full"
                         alt="Profile"
                       />
                       <div className="ml-3">
                         <div className="font-bold text-sm lg:text-base">
-                          Alexandra Chen
+                          {user?.username}
                         </div>
                         <div className="text-xs lg:text-sm text-gray-500">
-                          alex44@gmail.com
+                          {user?.email}
                         </div>
                       </div>
                     </div>
                     <Link
-                      to={`/profile/1`}
+                      to={`/profile/${user?.id}`}
                       className="text-sm dropdown-item px-4 py-2 hover:bg-white/20 flex items-center gap-2 text-white"
                     >
                       <User className="w-4 h-4" /> My Profile
                     </Link>
 
-                    <HashLink
-                      to="#"
+                    <button
+                      onClick={handleLogout}
                       className="text-sm dropdown-item px-4 py-2 hover:bg-white/20 flex items-center gap-2 text-red-600"
                     >
                       <LogOut className="w-4 h-4" /> Log Out
-                    </HashLink>
+                    </button>
                   </div>
                 )}
               </div>
@@ -313,7 +336,7 @@ const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
             </HashLink>
           ))}
 
-          {!isLoggedIn && (
+          {!isAuthenticated && (
             <div className="flex flex-col space-y-4 mt-8">
               <Link
                 to="/auth#login"
@@ -336,24 +359,24 @@ const NavBar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
             </div>
           )}
 
-          {isLoggedIn && (
-            <>
-              <HashLink
-                onClick={() => {
-                  setShowForm(true);
-                  setIsMobileMenuOpen(false);
-                }}
-                to="#"
-                className="bg-black inline-flex items-center justify-center px-6 py-3 font-medium
-                rounded-md text-white pink-gradient-bg shadow-sm uppercase gap-2 text-sm"
-              >
-                <Sparkle className="w-5 h-5" />
-                Ignite It
-              </HashLink>
+          {/* Mobile Ignite It Button */}
+          <HashLink
+            onClick={() => {
+              handleIgniteClick();
+              setIsMobileMenuOpen(false);
+            }}
+            to="#"
+            className="bg-black inline-flex items-center justify-center px-6 py-3 font-medium
+            rounded-md text-white pink-gradient-bg shadow-sm uppercase gap-2 text-sm"
+          >
+            <Sparkle className="w-5 h-5" />
+            Ignite It
+          </HashLink>
 
+          {isAuthenticated && (
+            <>
               {/* Mobile Profile Dropdown */}
               <MobileProfileDropdown
-                person={person}
                 onClose={() => setIsMobileMenuOpen(false)}
               />
             </>

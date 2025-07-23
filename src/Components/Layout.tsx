@@ -4,11 +4,12 @@ import MouseTrail from "./Mouse";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import IgniteItForm from "../Routes/IgniteForm";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Layout() {
   const location = useLocation();
-  const [isLoggedIn] = useState(true); // Set your real logic here
   const [showForm, setShowForm] = useState(false);
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     const animatedElements = document.querySelectorAll(".animate-on-scroll");
@@ -40,9 +41,8 @@ export default function Layout() {
   return (
     <>
       <MouseTrail />
-      <NavBar isLoggedIn={isLoggedIn} />
+      <NavBar />
       
-      {/* 🔥 MODAL - can be opened from Hero or Footer now */}
       {showForm && (
         <div className="fixed w-full h-full z-50 pt-4 sm:pt-10 overflow-y-auto flex justify-center bg-black/50 bg-opacity-50 backdrop-blur-sm px-4">
           <div className="relative w-full max-w-lg">
@@ -57,9 +57,8 @@ export default function Layout() {
         </div>
       )}
 
-      {/* Main Content + Passing context */}
-      <Outlet context={{ isLoggedIn }} />
-      <Footer isLoggedIn={isLoggedIn} setShowForm={setShowForm} />
+      <Outlet context={{ isAuthenticated }} />
+      <Footer isLoggedIn={isAuthenticated} setShowForm={setShowForm} />
     </>
   );
 }
