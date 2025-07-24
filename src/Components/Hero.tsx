@@ -5,11 +5,11 @@ import IgniteItForm from "../Routes/IgniteForm";
 import { useOutletContext } from "react-router-dom";
 
 interface ContextType {
-  isLoggedIn: boolean;
+  isAuthenticated: boolean;
 }
 
 const Hero = () => {
-   const { isLoggedIn } = useOutletContext<ContextType>();
+   const { isAuthenticated } = useOutletContext<ContextType>();
   const [showForm, setShowForm] = useState(false);
   const navigate = useNavigate();
 
@@ -110,8 +110,7 @@ const Hero = () => {
                   <button
                     className="relative z-20 bg-main-green greeny-inset-shadowing ring-1 ring-white text-white py-3 rounded-lg font-semibold transition duration-300 ease-in-out hover:bg-white hover:shadow-lg hover:shadow-white/30 transform hover:-translate-y-1 hover:scale-100 px-9"
                     onClick={() => {
-                      if (isLoggedIn) {
-                        navigate("#");
+                      if (isAuthenticated) {
                         setShowForm(true);
                       } else {
                         navigate("/auth#login");
