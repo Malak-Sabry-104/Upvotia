@@ -105,7 +105,7 @@ export default function AuthCard() {
       
       max-w-4xl bg-black/20 rounded-3xl 
       mt-[7rem] shadow-lg overflow-hidden flex md:flex-row  flex-col
-      transition-all duration-700 ease-in-out md:h-[80vh] h-[100vh]">
+      transition-all duration-700 ease-in-out md:h-[80vh] h-[120vh]">
         {/* Side panel */}
         <div className="greeny-bg md:mt-0 mt-[2rem] text-white
          w-full md:w-1/2 p-10 flex flex-col justify-center items-center
@@ -119,7 +119,6 @@ export default function AuthCard() {
           </p>
           <button
             onClick={() => setIsRegister(!isRegister)}
-            disabled={loading}
             className="px-5 py-2 ring-2 ring-white/10 rounded-full bg-black/30 hover:text-[#39a476] transition cursor-pointer hover:shadow-lg hover:shadow-[#184a34] transform hover:-translate-y-1 hover:scale-100"
           >
             {isRegister ? "Login" : "Register"}
@@ -127,7 +126,7 @@ export default function AuthCard() {
         </div>
 
         {/* Forms */}
-        <div className="w-full md:pt-0 pt-[25rem] md:w-1/2 p-10 relative overflow-hidden">
+        <div className="w-full md:pt-0 pt-[25rem] md:w-1/2 p-30 relative overflow-hidden">
           {/* ───── Login ───── */}
           <div
             className={`absolute flex flex-col justify-center top-0 left-0 w-full h-full px-10 py-6 transition-all duration-700 ease-in-out ${
@@ -163,7 +162,7 @@ export default function AuthCard() {
                 })}
                 error={loginErrors.password?.message as string}
               />
-              <SubmitButton label="Login" loading={loading} />
+              <SubmitButton label="Login" />
             </form>
             <SocialLogin />
           </div>
