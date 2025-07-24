@@ -91,7 +91,7 @@ export default function AuthCard() {
   return (
     <section
       id="auth"
-      style={{ height: "100vh", width: "100%", position: "relative" }}
+      style={{ minHeight: "100vh", width: "100%", position: "relative" }}
       className="flex justify-center items-center pb-8"
     >
       <div className="framer-container">
