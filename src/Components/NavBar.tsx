@@ -232,21 +232,23 @@ const NavBar = () => {
             </>
           )}
 
-          {/* Ignite It Button - Always visible */}
-          <HashLink
-            onClick={handleIgniteClick}
-            to="#"
-            className="bg-black
-            inline-flex items-center px-2 lg:px-3 py-2 text-xs font-medium
-            rounded-md text-white/90 pink-gradient-bg shadow-sm uppercase gap-1 lg:gap-2
-            backdrop-blur-2xl 
-            z-10 relative  
-            transition duration-300 hover:-translate-y-1 hover:shadow-lg 
-            hover:shadow-[#144D35]/30 transform"
-          >
-            <Sparkle className="w-4 h-4 lg:w-5 lg:h-5" />
-            <span className="hidden sm:inline">Ignite It</span>
-          </HashLink>
+          {/* Ignite It Button - Only visible when authenticated */}
+          {isAuthenticated && (
+            <HashLink
+              onClick={handleIgniteClick}
+              to="#"
+              className="bg-black
+              inline-flex items-center px-2 lg:px-3 py-2 text-xs font-medium
+              rounded-md text-white/90 pink-gradient-bg shadow-sm uppercase gap-1 lg:gap-2
+              backdrop-blur-2xl 
+              z-10 relative  
+              transition duration-300 hover:-translate-y-1 hover:shadow-lg 
+              hover:shadow-[#144D35]/30 transform"
+            >
+              <Sparkle className="w-4 h-4 lg:w-5 lg:h-5" />
+              <span className="hidden sm:inline">Ignite It</span>
+            </HashLink>
+          )}
 
           {isAuthenticated && (
             <>
@@ -358,19 +360,21 @@ const NavBar = () => {
             </div>
           )}
 
-          {/* Mobile Ignite It Button */}
-          <HashLink
-            onClick={() => {
-              handleIgniteClick();
-              setIsMobileMenuOpen(false);
-            }}
-            to="#"
-            className="bg-black inline-flex items-center justify-center px-6 py-3 font-medium
-            rounded-md text-white pink-gradient-bg shadow-sm uppercase gap-2 text-sm"
-          >
-            <Sparkle className="w-5 h-5" />
-            Ignite It
-          </HashLink>
+          {/* Mobile Ignite It Button - Only visible when authenticated */}
+          {isAuthenticated && (
+            <HashLink
+              onClick={() => {
+                handleIgniteClick();
+                setIsMobileMenuOpen(false);
+              }}
+              to="#"
+              className="bg-black inline-flex items-center justify-center px-6 py-3 font-medium
+              rounded-md text-white pink-gradient-bg shadow-sm uppercase gap-2 text-sm"
+            >
+              <Sparkle className="w-5 h-5" />
+              Ignite It
+            </HashLink>
+          )}
 
           {isAuthenticated && (
             <>
