@@ -52,7 +52,7 @@ export default function ExploreAsks() {
       toast.success('Upvote toggled!');
     } catch (error) {
       console.error('Failed to upvote:', error);
-      toast.error('Failed to upvote wish');
+      toast.error('You should be logged in to upvote');
     }
   };
 
