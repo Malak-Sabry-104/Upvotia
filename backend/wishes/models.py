@@ -16,6 +16,7 @@ class Wish(models.Model):
     image = models.ImageField(upload_to='wish_images', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    upvotes = GenericRelation('wishes.Upvote')
     boosts = GenericRelation('boosts.Boost')
     comments = GenericRelation('comments.Comment')
 

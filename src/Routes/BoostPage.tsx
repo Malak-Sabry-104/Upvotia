@@ -48,6 +48,7 @@ export default function BoostPage() {
       }
       
       setItem(data || null);
+      console.log(data)
     } catch (error) {
       console.error('Failed to fetch item:', error);
       toast.error('Failed to load item');
@@ -184,7 +185,7 @@ export default function BoostPage() {
         </div>
 
         {/* Stats and Actions */}
-        <div className="flex items-center gap-6 mb-6">
+        <div className="flex items-center gap-6 mb-6 flex-col md:flex-row">
           <button
             onClick={handleUpvote}
             className="flex items-center px-4 py-2 bg-green-400/20 border border-green-300 rounded text-white hover:bg-green-300/30 transition"
