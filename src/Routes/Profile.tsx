@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import placeholder from "../assets/placeholder.png";
+import placeholder from "../assets/images.png";
 import { profileService } from "../services/profileService";
 import type { User, Wish, Project, Boost, Comment } from "../types";
 import { useAuth } from "../contexts/AuthContext";
